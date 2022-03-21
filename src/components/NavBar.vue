@@ -4,7 +4,7 @@
         <div class="logo"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
         <ul class="nav-item">
             <li>
-                <a href="#" class="height-ext" :class={darkword:!isDark}>Products</a>
+                <a href="#" class="height-ext lightword" :class={darkword:!isDark}>Products</a>
                 <div class="mega-container">
                     <div class="mega-content">
                         <div class="mega-row">
@@ -49,11 +49,11 @@
                     </div>
                 </div>
             </li>
-            <li><a href="#" :class={darkword:!isDark}>News</a></li>
-            <li><a href="#" :class={darkword:!isDark}>Support</a></li>
-            <li><a href="#" :class={darkword:!isDark}>Shop</a></li>
+            <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
+            <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
+            <li><a href="#" class="lightword" :class={darkword:!isDark}>Shop</a></li>
             <li>
-                <a href="#" class="height-ext" :class={darkword:!isDark}>Lexar</a>
+                <a href="#" class="height-ext lightword" :class={darkword:!isDark}>Lexar</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -122,7 +122,7 @@ nav{
   display: inline-flex; /*Can I set flex here?*/
 }
 /*content style on Nav bar*/
-.nav-item li a{
+.lightword{
   font-family: 'Noto Sans';
   list-style: none;
   padding-left:45px;
@@ -172,7 +172,7 @@ nav{
   font-family: 'Noto Sans';
   list-style: none;
   padding-left:45px;
-  color:black !important;
+  color:black;
   text-decoration: none;
 }
 
@@ -180,7 +180,7 @@ nav{
   font-family: 'Noto Sans';
   list-style: none;
   padding-left:45px;
-  color:white !important;
+  color:white;
   text-decoration: none;
 }
 
