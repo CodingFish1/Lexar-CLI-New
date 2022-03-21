@@ -1,30 +1,39 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <!-- <nav> -->
+    <!-- <router-link to="/">Home</router-link> | -->
+    <!-- <router-link to="/about">About</router-link> -->
+  <!-- </nav> -->
+  <!-- <router-view/> -->
+  <NavBar></NavBar>
+  <div id="fullpage">
+    <VideoWall class="section"></VideoWall>
+    <PictureWall class="section"></PictureWall>
+    <NewsWall class="section"></NewsWall>
+    <SocialBoard class="section"></SocialBoard>
+  </div>
 </template>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import VideoWall from '@/components/VideoWall.vue'
+import PictureWall from '@/components/PictureWall.vue'
+import NewsWall from '@/components/NewsWall.vue'
+import SocialBoard from '@/components/SocialBoard.vue'
 
-nav {
-  padding: 30px;
+export default {
+  data () {
+    return {
+    }
+  },
+  components: {
+    VideoWall, PictureWall, NewsWall, SocialBoard
+  },
+  methods: {
+  },
+  mounted () {
+  }
 }
+</script>
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style lang="scss">
+@import 'bootstrap/scss/bootstrap'
 </style>
