@@ -3,8 +3,8 @@ module.exports = defineConfig({
   transpileDependencies: true
 })
 
-module.exports={
+module.exports = {
   publicPath: process.env.NODE_ENV === 'production'
-  ? '/vue-gh-pages/'
+  ? '/Lexar-CLI-New/'
   : '/',
 }

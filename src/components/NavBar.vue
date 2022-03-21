@@ -4,7 +4,7 @@
         <div class="logo"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
         <ul class="nav-item">
             <li>
-                <a href="#" class="height-ext" :class={lightword:!isDark}>Products</a>
+                <a href="#" class="height-ext" :class={darkword:!isDark}>Products</a>
                 <div class="mega-container">
                     <div class="mega-content">
                         <div class="mega-row">
@@ -49,11 +49,11 @@
                     </div>
                 </div>
             </li>
-            <li><a href="#" :class={lightword:!isDark}>News</a></li>
-            <li><a href="#" :class={lightword:!isDark}>Support</a></li>
-            <li><a href="#" :class={lightword:!isDark}>Shop</a></li>
+            <li><a href="#" :class={darkword:!isDark}>News</a></li>
+            <li><a href="#" :class={darkword:!isDark}>Support</a></li>
+            <li><a href="#" :class={darkword:!isDark}>Shop</a></li>
             <li>
-                <a href="#" class="height-ext" :class={lightword:!isDark}>Lexar</a>
+                <a href="#" class="height-ext" :class={darkword:!isDark}>Lexar</a>
                 <ul class="dropdown-menu">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
@@ -104,7 +104,7 @@ nav{
   position: relative; /***This line was added after the tutorial add the mega menu. Why?* */
   display: flex;
   align-items:center;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .nav-container:hover{
@@ -168,11 +168,19 @@ nav{
   width:100%;/*Why set 100% here result .nav-container's justify-content:start*/
 }
 
-.lightword{
+.darkword{
   font-family: 'Noto Sans';
   list-style: none;
   padding-left:45px;
   color:black !important;
+  text-decoration: none;
+}
+
+.darkword:hover{
+  font-family: 'Noto Sans';
+  list-style: none;
+  padding-left:45px;
+  color:white;
   text-decoration: none;
 }
 
