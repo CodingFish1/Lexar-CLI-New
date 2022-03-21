@@ -54,7 +54,7 @@
             <li><a href="#" class="lightword" :class={darkword:!isDark}>Shop</a></li>
             <li>
                 <a href="#" class="height-ext lightword" :class={darkword:!isDark}>Lexar</a>
-                <ul class="dropdown-menu">
+                <ul class="dd-menu">
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
@@ -130,32 +130,32 @@ nav{
   text-decoration: none;
 }
 
-.nav-item li a:hover{
+/* .nav-item li a:hover{
   color:#128c9f;
   transition: all 0.4s ease;
-}
+} */
 
 .nav-item li{
   list-style: none;
 }
 
-.dropdown-menu{
+.dd-menu{
   background: #3f4041;
   width:160px;
-  top:82px;
+  top:80px;
   line-height: 45px;
   position: absolute; /*Why*/
   visibility: hidden;
 }
 
-.dropdown-menu li a{
+.dd-menu li a{
   width:100%;
   display: block;
   padding:0 0 0 15px;
   border-radius: 0px;
 }
 
-.nav-item li a:hover .dropdown-menu{
+.nav-item li:hover .dd-menu{
   visibility: visible;
   opacity: 1;
 }
@@ -179,11 +179,16 @@ nav{
 .nav-container:hover li a{
   font-family: 'Noto Sans';
   list-style: none;
-  padding-left:45px;
   color:white;
   text-decoration: none;
 }
 
+.nav-container li a:hover{
+  font-family: 'Noto Sans';
+  list-style: none;
+  color:#128c9f;
+  text-decoration: none;
+}
 /*******/
 
 /***Mega***/
