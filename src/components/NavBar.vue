@@ -176,11 +176,11 @@ nav{
   text-decoration: none;
 }
 
-.darkword:hover{
+.nav-container:hover li a{
   font-family: 'Noto Sans';
   list-style: none;
   padding-left:45px;
-  color:white;
+  color:white !important;
   text-decoration: none;
 }
 
