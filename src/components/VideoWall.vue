@@ -1,20 +1,21 @@
 <template>
- <section class="video-container" ref="getHeight">
+<section class="section video-container" ref="getHeight">
 
             <div class="video-container slide fp-auto-height-responsive">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Next Level Speed</span>
-                        <p class="slogan-p">Lexar DDR4 3600Mbps Memory Kit. Blazing Fast in Low Power Consumption</p>
+                        <p class="slogan-p">Lexar DDR4 3600Mbps Memory Kit. Blazing Fast in Low Power Consumption
+                        </p>
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted active class="video-container slide fp-auto-height-responsive">
+                <video data-autoplay loop muted active class="fullscreen-video">
                     <source src="../assets/video/memory.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <div class="video-container">
+            <div class="video-container slide fp-auto-height-responsive">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Capture your life</span>
