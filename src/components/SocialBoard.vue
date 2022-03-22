@@ -10,36 +10,36 @@
             </div>
         </div>
         <div class="grid-system">
-            <div class="box-section1 box-overlay">
-                <img class="img-fluid-nb v-layout" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
-            </div>
-
-            <div class="box-section2 box-overlay">
-                <img class="img-fluid-nb before-layout" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
-            </div>
-
-            <div class="box-section3 box-overlay">
-                <img class="img-fluid-nb before-layout" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
-            </div>
-
-            <div class="box-section4 box-overlay">
-                <img class="img-fluid-nb before-layout" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
-            </div>
-
-            <div class="box-section5 box-overlay">
-                <img class="img-fluid-nb before-layout" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
+            <div class="box-section1 box-overlay"
+                v-for="(item, index) in arr"
+                :key="index"
+                :class="['box-section'+(index+1)]">
+                <img class="img-fluid-nb" :src="item.src">
             </div>
         </div>
+        <img class="img-fluid-nb" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
 
-        <footer class="footer-section" >
+        <!-- <footer class="footer-section" >
             <p>Demonstration only. Not for commercial using</p>
             <p>Administrator Panel</p>
-        </footer>
+        </footer> -->
     </section>
 </template>
 
 <script>
 export default {
+  data () {
+    return {
+      arr: [
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
+        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' }
+      ]
+    }
+  },
   methods: {
     mounted () {
       console.log('Hi')
