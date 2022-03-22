@@ -270,4 +270,51 @@ font-weight: bold;
   font-size: 17px;
   display: block;
 }
+
+@media screen and (max-width:970px) {
+  .nav-item{
+    display: block;
+    position:fixed;
+    height:100vh;/**Make the nav-bar as high as viewport***/
+    width:100%;
+    max-width:350px;
+    background:#7f7f7f;
+    top:0;
+    left:0;
+    visibility: hidden; /*ON/OFF**/
+    /* overflow-y: auto; */
+    line-height: 50px;
+    padding:50px 10px;
+  }
+
+  .nav-item li{
+    margin: 15px 10px;
+  }
+
+  .nav-item li a{
+    padding:0 20px;
+    display:block;
+    font-size: 20px;
+  }
+
+  .dd-menu{
+  background: #3f4041;
+  line-height: 45px;
+  position: static; /*Why*/
+  opacity:1;
+  visibility: hidden;
+  width:100%;
+  padding-left: 20px;
+  top:65px;
+  }
+  .drop-menu li{
+    margin:0;
+  }
+
+  .drop-menu li a{
+    font-size:18px;
+    border-radius:5px;
+  }
+}
+
 </style>

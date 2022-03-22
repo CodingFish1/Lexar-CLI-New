@@ -30,6 +30,8 @@ new Fullpage('#fullpage', { // eslint-disable-line no-new
 
   verticalCentered: false,
 
+  responsiveWidth: 750,
+
   afterLoad: function (origin, destination, direction) {
     console.log(destination.index)
     emitter.emit('has-scroll', destination.index)

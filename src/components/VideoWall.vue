@@ -1,7 +1,7 @@
 <template>
- <section class="video-container">
+ <section class="video-container" ref="getHeight">
 
-            <div class="video-container slide fp-auto-height-responsive">
+            <div class="video-container">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Next Level Speed</span>
@@ -14,7 +14,7 @@
                 </video>
             </div>
 
-            <div class="video-container slide fp-auto-height-responsive">
+            <div class="video-container">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Capture your life</span>
@@ -32,6 +32,25 @@
 
 <script>
 export default {
+  data () {
+    return {
+      heightv: ''
+    }
+  },
+  mounted () {
+    this.NewHeight()
+    console.log(this.heightv)
+  },
+  // computed: {
+  //   matchHeight: function () {
+  //     return this.$refs.getHeight.clientHeight
+  //   }
+  // },
+  methods: {
+    NewHeight () {
+      this.heightv = this.$refs.getHeight.clientHeight
+    }
+  }
 }
 </script>
 
@@ -48,7 +67,6 @@ export default {
   z-index: 1;
   background-color: rgba(97, 97, 97, 0.8);
   color: #fff;;
-
 }
 
 .slogan{
@@ -74,8 +92,50 @@ export default {
 }
 
 .fullscreen-video {
-  max-width: 100%; /***Disable it on Mobile view***/
-  /* max-height:100%; */ /*Disable it on Desktop view*/
+  max-width: 100%;
   object-fit: cover;
+}
+
+@media screen and (max-width:810px) {
+  .video-overlay{
+  position: absolute;
+  top:25%;
+  left:5%;
+  z-index: 1;
+  background-color: rgba(97, 97, 97, 0.8);
+  color: #fff;;
+}
+  .slogan{
+    display: block;
+    position: relative;
+  }
+
+  .slogan span{
+  width: 100%;
+  font-size: 20px;
+  font-family: 'Anton', sans-serif;
+  line-height: 1.2em;
+  letter-spacing: 1px;
+  font-weight: 100;
+  text-shadow: 5px 1px 3px #1a1a1a;
+  display:block;
+  /* padding: 0 5%; */
+  text-transform: uppercase
+}
+
+.slogan p{
+  font-size: 18px;
+  padding-top: 8px;
+  font-family: 'Anton', sans-serif;
+}
+
+.slogan-p{
+  margin-bottom: 0px;
+}
+
+.fullscreen-video {
+  max-height:100%;
+  object-fit: cover;
+}
 }
 </style>

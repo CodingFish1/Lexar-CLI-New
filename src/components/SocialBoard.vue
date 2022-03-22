@@ -14,10 +14,9 @@
                 v-for="(item, index) in arr"
                 :key="index"
                 :class="['box-section'+(index+1)]">
-                <img class="img-fluid-nb" :src="item.src">
+                <img class="img-fluid-nb" :src="require(`../assets/image/${item.fileName}`)">
             </div>
         </div>
-        <img class="img-fluid-nb" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg">
 
         <!-- <footer class="footer-section" >
             <p>Demonstration only. Not for commercial using</p>
@@ -31,12 +30,12 @@ export default {
   data () {
     return {
       arr: [
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' },
-        { src: '../assets/image/DDR5-Ares_PR_1500x1000.jpg' }
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
+        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' }
       ]
     }
   },
