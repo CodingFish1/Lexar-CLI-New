@@ -1,7 +1,7 @@
 <template>
  <section class="video-container" ref="getHeight">
 
-            <div class="video-container">
+            <div class="video-container slide fp-auto-height-responsive">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Next Level Speed</span>
@@ -9,7 +9,7 @@
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted active class="fullscreen-video">
+                <video data-autoplay loop muted active class="video-container slide fp-auto-height-responsive">
                     <source src="../assets/video/memory.mp4" type="video/mp4">
                 </video>
             </div>
