@@ -16,7 +16,7 @@
                 :key="index"
                 :class="['box-section'+(index+1)]">
                 <a :href="item.url" @click.prevent="openModal(item.url)">
-                  <img class="img-fluid-nb" :src="require(`../assets/videowall/${item.fileName}`)">
+                  <img :class="{'img-fluid-nb':item.style,'img-fluid-car':!(item.style)}" :src="require(`../assets/videowall/${item.fileName}`)">
                 </a>
             </div>
         </div>
@@ -33,11 +33,11 @@ export default {
   data () {
     return {
       arr: [
-        { fileName: 'photog.jpg', url: 'https://www.youtube.com/embed/by2sDDVTTYY' },
-        { fileName: 'switch.jpg', url: 'https://www.youtube.com/embed/kvNM_t5n8HU' },
-        { fileName: 'memorycard.jpg', url: 'https://www.youtube.com/embed/GIuyLvcIVLQ' },
-        { fileName: 'travel.jpg', url: 'https://www.youtube.com/embed/BkFS0IBlgzA' },
-        { fileName: 'car.jpg', url: 'https://www.youtube.com/embed/E6o-TaVoN5Q' }
+        { fileName: 'photog.jpg', url: 'https://www.youtube.com/embed/by2sDDVTTYY', style: true },
+        { fileName: 'switch.jpg', url: 'https://www.youtube.com/embed/kvNM_t5n8HU', style: true },
+        { fileName: 'memorycard.jpg', url: 'https://www.youtube.com/embed/GIuyLvcIVLQ', style: true },
+        { fileName: 'travel.jpg', url: 'https://www.youtube.com/embed/BkFS0IBlgzA', style: true },
+        { fileName: 'car.jpg', url: 'https://www.youtube.com/embed/E6o-TaVoN5Q', style: false }
       ]
     }
   },
@@ -54,8 +54,14 @@ export default {
 <style scoped>
 .img-fluid-nb{
   object-fit:cover;
-  width:100%;
+  max-width:100%;
   height:100%
+}
+
+.img-fluid-car{
+  object-fit:cover;
+  width:100%;
+  height:100%;
 }
 
 .stay{

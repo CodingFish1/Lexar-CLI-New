@@ -1,7 +1,7 @@
 <template>
 <div class="container">
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" ref="modaldom">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-body">
                   <div class="ratio ratio-16x9">
@@ -21,7 +21,8 @@ export default {
   data () {
     return {
       urlInlet: '',
-      modalOn: ''
+      modalOn: '',
+      isDisplay: true
     }
   },
   created () {
@@ -49,8 +50,8 @@ export default {
 </script>
 
 <style>
-.fp-enabled .modal{
+/* .fp-enabled .modal{
   position:fixed !important;
   top:25%;
-}
+} */
 </style>

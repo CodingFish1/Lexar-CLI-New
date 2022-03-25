@@ -5,7 +5,7 @@
   <!-- </nav> -->
   <!-- <router-view/> -->
   <NavBar></NavBar>
-  <div id="fullpage">
+  <div id="fullpage" class="">
     <VideoWall class="section"></VideoWall>
     <PictureWall class="section"></PictureWall>
     <NewsWall class="section"></NewsWall>
