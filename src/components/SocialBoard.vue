@@ -10,38 +10,42 @@
             </div>
         </div>
         <div class="grid-system">
+
             <div class="box-section1 box-overlay"
                 v-for="(item, index) in arr"
                 :key="index"
                 :class="['box-section'+(index+1)]">
-                <img class="img-fluid-nb" :src="require(`../assets/image/${item.fileName}`)">
+                <a :href="item.url" @click.prevent="openModal(item.url)">
+                  <img class="img-fluid-nb" :src="require(`../assets/videowall/${item.fileName}`)">
+                </a>
             </div>
         </div>
-
-        <!-- <footer class="footer-section" >
-            <p>Demonstration only. Not for commercial using</p>
-            <p>Administrator Panel</p>
-        </footer> -->
+    <FooterBar></FooterBar>
     </section>
+
 </template>
 
 <script>
+import FooterBar from '@/components/FooterBar.vue'
+import emitter from '@/libs/emitter'
 export default {
+  components: { FooterBar },
   data () {
     return {
       arr: [
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' },
-        { fileName: 'DDR5-Ares_PR_1500x1000.jpg' }
+        { fileName: 'photog.jpg', url: 'https://www.youtube.com/embed/by2sDDVTTYY' },
+        { fileName: 'switch.jpg', url: 'https://www.youtube.com/embed/kvNM_t5n8HU' },
+        { fileName: 'memorycard.jpg', url: 'https://www.youtube.com/embed/GIuyLvcIVLQ' },
+        { fileName: 'travel.jpg', url: 'https://www.youtube.com/embed/BkFS0IBlgzA' },
+        { fileName: 'car.jpg', url: 'https://www.youtube.com/embed/E6o-TaVoN5Q' }
       ]
     }
   },
+  mounted () {
+  },
   methods: {
-    mounted () {
-      console.log('Hi')
+    openModal (url) {
+      emitter.emit('openModal', url)
     }
   }
 }
@@ -50,7 +54,7 @@ export default {
 <style scoped>
 .img-fluid-nb{
   object-fit:cover;
-  max-width:100%;
+  width:100%;
   height:100%
 }
 
@@ -63,7 +67,7 @@ export default {
   line-height: 32px;
 }
 .stay-connect{
-  width:500px;
+  max-width:500px;
   text-align: center;
   padding-top: 10px;
   font-family: 'Noto Sans';
@@ -81,8 +85,8 @@ export default {
 
 .grid-system{
   display:grid;
-  width:900px;
-  height:300px;
+  max-width:900px;
+  max-height:300px;
   grid-row-gap: 5px;
   grid-column-gap: 5px;
 
@@ -132,18 +136,5 @@ export default {
   background-size: contain;
   width:10%;
   height: 20%;
-}
-
-.footer-section{
-  padding:5px;
-  color:white;
-  font-family: 'Noto Sans';
-  font-size: 12px;
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: #3f4041;
-  width: 1300px
 }
 </style>

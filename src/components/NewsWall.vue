@@ -169,4 +169,11 @@ export default {
   font-size: 11px;
   color:#909090
 }
+
+@media screen and (max-width:810px) {
+.news-layout{
+  position: relative;
+  height: auto !important;
+}
+}
 </style>

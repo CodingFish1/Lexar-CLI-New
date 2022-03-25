@@ -82,7 +82,6 @@ export default {
       } else {
         this.isDark = true
       }
-      console.log(this.isDark)
     })
   }
 }
@@ -272,6 +271,12 @@ font-weight: bold;
 }
 
 @media screen and (max-width:970px) {
+  .logo{
+  max-width:10%;
+  max-height:10%;
+  background-color: #7f7f7f;
+  padding:10px;
+}
   .nav-item{
     display: block;
     position:fixed;

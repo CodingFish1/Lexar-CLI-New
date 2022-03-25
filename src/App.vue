@@ -11,6 +11,7 @@
     <NewsWall class="section"></NewsWall>
     <SocialBoard class="section"></SocialBoard>
   </div>
+  <VideoModal ref="pmodal"></VideoModal>
 </template>
 
 <script>
@@ -18,6 +19,7 @@ import VideoWall from '@/components/VideoWall.vue'
 import PictureWall from '@/components/PictureWall.vue'
 import NewsWall from '@/components/NewsWall.vue'
 import SocialBoard from '@/components/SocialBoard.vue'
+import VideoModal from '@/components/VideoModal.vue'
 
 export default {
   data () {
@@ -25,7 +27,7 @@ export default {
     }
   },
   components: {
-    VideoWall, PictureWall, NewsWall, SocialBoard
+    VideoWall, PictureWall, NewsWall, SocialBoard, VideoModal
   },
   methods: {
   },

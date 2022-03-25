@@ -1,30 +1,34 @@
 <template>
 <section class="section video-container" ref="getHeight">
 
-            <div class="video-container slide fp-auto-height-responsive">
+            <div class="video-container fp-auto-height-responsive" :class="{slide:!isMobile}">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Next Level Speed</span>
-                        <p class="slogan-p">Lexar DDR4 3600Mbps Memory Kit. Blazing Fast in Low Power Consumption
+                        <p class="slogan-p" v-if="isMobile">Lexar Memory Kit, Quietly Fast
+                        </p>
+                        <p class="slogan-p" v-else>Lexar DDR4 3600Mbps Memory Kit. Blazing Fast in Low Power Consumption
                         </p>
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted active class="fullscreen-video">
+                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause">
                     <source src="../assets/video/memory.mp4" type="video/mp4">
                 </video>
             </div>
 
-            <div class="video-container slide fp-auto-height-responsive">
+            <div class="video-container fp-auto-height-responsive" :class="{slide:!isMobile}">
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Capture your life</span>
-                        <p class="slogan-p">With Lexar 2000x Premiun SD Card. Your Fast and Reliable Partner
+                        <p class="slogan-p" v-if="isMobile">Lexar 2000x Premiun SD Card
+                        </p>
+                        <p class="slogan-p" v-else>With Lexar 2000x Premiun SD Card. Your Fast and Reliable Partner
                         </p>
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted class="fullscreen-video">
+                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause">
                     <source src="../assets/video/1667x.mp4" type="video/mp4">
                 </video>
             </div>
@@ -32,24 +36,23 @@
 </template>
 
 <script>
+import device from 'current-device'
 export default {
   data () {
     return {
-      heightv: ''
+      isMobile: ''
+    }
+  },
+  beforeMount () {
+    if (device.mobile() === true) {
+      this.isMobile = true
+    } else {
+      this.isMobile = false
     }
   },
   mounted () {
-    this.NewHeight()
-    console.log(this.heightv)
-  },
-  // computed: {
-  //   matchHeight: function () {
-  //     return this.$refs.getHeight.clientHeight
-  //   }
-  // },
-  methods: {
-    NewHeight () {
-      this.heightv = this.$refs.getHeight.clientHeight
+    if (this.isMobile === true) {
+      this.$refs.removeAttr('data-autoplay')
     }
   }
 }
@@ -97,7 +100,13 @@ export default {
   object-fit: cover;
 }
 
-@media screen and (max-width:810px) {
+@media screen and (max-width:970px) {
+  .video-container{
+  position: relative;
+  top:0;
+  height: auto !important;
+}
+
   .video-overlay{
   position: absolute;
   top:25%;
@@ -125,7 +134,7 @@ export default {
 }
 
 .slogan p{
-  font-size: 18px;
+  font-size: 16px;
   padding-top: 8px;
   font-family: 'Anton', sans-serif;
 }
