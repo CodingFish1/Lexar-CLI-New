@@ -12,8 +12,11 @@
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause">
+                <video data-autoplay loop muted class="fullscreen-video" v-if="!isMobile">
                     <source src="../assets/video/memory.mp4" type="video/mp4">
+                </video>
+                <video poster="../assets/video/DDR4.jpg" data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-else>
+                    <source src="../assets/video/memory-mobile.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -21,15 +24,18 @@
                 <div class="video-overlay">
                     <h1 class="slogan">
                         <span>Capture your life</span>
-                        <p class="slogan-p" v-if="isMobile">Lexar 2000x Premiun SD Card
+                        <p class="slogan-p" v-if="isMobile">Lexar 1800x Premiun SD Card
                         </p>
                         <p class="slogan-p" v-else>With Lexar 2000x Premiun SD Card. Your Fast and Reliable Partner
                         </p>
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause">
+                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-if="!isMobile">
                     <source src="../assets/video/1667x.mp4" type="video/mp4">
+                </video>
+                <video poster="../assets/video/SD1800x.jpg" data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-else>
+                    <source src="../assets/video/1667x-mobile.mp4" type="video/mp4">
                 </video>
             </div>
     </section>

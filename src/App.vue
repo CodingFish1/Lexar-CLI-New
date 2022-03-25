@@ -21,15 +21,25 @@ import NewsWall from '@/components/NewsWall.vue'
 import SocialBoard from '@/components/SocialBoard.vue'
 import VideoModal from '@/components/VideoModal.vue'
 
+import device from 'current-device'
+
 export default {
   data () {
     return {
+      isMobile: ''
     }
   },
   components: {
     VideoWall, PictureWall, NewsWall, SocialBoard, VideoModal
   },
   methods: {
+  },
+  beforeMount () {
+    if (device.mobile() === true) {
+      this.isMobile = true
+    } else {
+      this.isMobile = false
+    }
   },
   mounted () {
   }
