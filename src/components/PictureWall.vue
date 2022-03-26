@@ -100,6 +100,11 @@
 }
 
 @media screen and (max-width:970px) {
+.img-fluid-nb{
+  object-fit:cover;
+  max-width:100%;
+}
+
 .image-wall{
   display: flex;
   flex-direction: column;
