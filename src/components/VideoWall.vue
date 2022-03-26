@@ -12,11 +12,11 @@
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted class="fullscreen-video" v-if="!isMobile">
-                    <source src="../assets/video/memory.mp4" type="video/mp4">
-                </video>
-                <video poster="../assets/video/DDR4.jpg" data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-else>
+                <video poster="../assets/video/DDR4.jpg" loop muted class="fullscreen-video" ref="videoPause" v-if="isMobile">
                     <source src="../assets/video/memory-mobile.mp4" type="video/mp4">
+                </video>
+                <video data-autoplay loop muted class="fullscreen-video" v-else>
+                    <source src="../assets/video/memory.mp4" type="video/mp4">
                 </video>
             </div>
 
@@ -31,11 +31,11 @@
                     </h1>
                 </div>
 
-                <video data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-if="!isMobile">
-                    <source src="../assets/video/1667x.mp4" type="video/mp4">
-                </video>
-                <video poster="../assets/video/SD1800x.jpg" data-autoplay loop muted class="fullscreen-video" ref="videoPause" v-else>
+                <video poster="../assets/video/SD1800x.jpg" loop muted class="fullscreen-video" v-if="isMobile">
                     <source src="../assets/video/1667x-mobile.mp4" type="video/mp4">
+                </video>
+                <video data-autoplay loop muted class="fullscreen-video" v-else>
+                    <source src="../assets/video/1667x.mp4" type="video/mp4">
                 </video>
             </div>
     </section>
@@ -57,9 +57,9 @@ export default {
     }
   },
   mounted () {
-    if (this.isMobile === true) {
-      this.$refs.removeAttr('data-autoplay')
-    }
+    // if (this.isMobile === true) {
+    //   this.$refs.removeAttr('data-autoplay')
+    // }
   }
 }
 </script>

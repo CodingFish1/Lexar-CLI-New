@@ -42,6 +42,7 @@ export default {
       this.$refs.modaldom.addEventListener('hide.bs.modal', function () {
         const video = document.querySelector('iframe')
         video.src = ''
+        this.urlInlet = ''
         console.log('Stop Playing')
       })
     }

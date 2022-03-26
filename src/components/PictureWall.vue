@@ -1,6 +1,6 @@
 <template>
 <section class="image-wall">
-        <div class="locator fp-auto-height-responsive">
+        <div class="locator">
             <div class="pic-content">
                 <p class="pic-title">Lexar ARES DDR5 Desktop Memory</p>
                 <p class="pic-subtitle">DDR5 Gaming Memory</p>
@@ -12,7 +12,7 @@
             </div>
             <img  class="img-fluid-nb" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg" alt="">
         </div>
-        <div class="locator fp-auto-height-responsive">
+        <div class="locator">
             <div class="pic-content-2">
                 <p class="pic-title">Lexar PCIe 4.0 NVMe SSD</p>
                 <p class="pic-subtitle">New Benchmark For Storage</p>
