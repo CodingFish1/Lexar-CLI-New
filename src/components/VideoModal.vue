@@ -33,17 +33,15 @@ export default {
     })
   },
   mounted () {
-    console.log('VideoModal')
     this.modalOn = new Modal(this.$refs.modaldom)
     this.stopPlaying()
   },
   methods: {
     stopPlaying () {
-      this.$refs.modaldom.addEventListener('hide.bs.modal', function () {
+      this.$refs.modaldom.addEventListener('hide.bs.modal', () => {
         const video = document.querySelector('iframe')
         video.src = ''
         this.urlInlet = ''
-        console.log('Stop Playing')
       })
     }
   }

@@ -1,6 +1,5 @@
 <template>
-<section class="section video-container" ref="getHeight">
-
+<section class="section video-container">
             <div class="video-container fp-auto-height-responsive" :class="{slide:!isMobile}">
                 <div class="video-overlay">
                     <h1 class="slogan">
@@ -11,8 +10,7 @@
                         </p>
                     </h1>
                 </div>
-
-                <video poster="../assets/video/DDR4.jpg" loop muted class="fullscreen-video" ref="videoPause" v-if="isMobile">
+                <video poster="../assets/video/DDR4.jpg" loop muted class="fullscreen-video" v-if="isMobile">
                     <source src="../assets/video/memory-mobile.mp4" type="video/mp4">
                 </video>
                 <video data-autoplay loop muted class="fullscreen-video" v-else>

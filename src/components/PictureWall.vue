@@ -12,7 +12,7 @@
             </div>
             <img  class="img-fluid-nb" src="../assets/image/DDR5-Ares_PR_1500x1000.jpg" alt="">
         </div>
-        <div class="locator">
+        <div :class="{locator:(!isMobile),'locator-mobile':isMobile}">
             <div class="pic-content-2">
                 <p class="pic-title">Lexar PCIe 4.0 NVMe SSD</p>
                 <p class="pic-subtitle">New Benchmark For Storage</p>
@@ -27,6 +27,23 @@
 </template>
 
 <script>
+import emitter from '@/libs/emitter'
+export default {
+  data () {
+    return {
+      isMobile: ''
+    }
+  },
+  methods: {
+  },
+  created () {
+    emitter.on('deviceType', (data) => {
+      this.isMobile = data
+    })
+  },
+  mounted () {
+  }
+}
 </script>
 
 <style scoped>
@@ -99,12 +116,13 @@
   background-color:#128c9f;
 }
 
-@media screen and (max-width:970px) {
-.img-fluid-nb{
-  object-fit:cover;
-  max-width:100%;
+.locator-mobile{
+  position: relative;
+  padding-bottom: 5px;
+  height:35vh;
 }
 
+@media screen and (max-width:970px) {
 .image-wall{
   display: flex;
   flex-direction: column;

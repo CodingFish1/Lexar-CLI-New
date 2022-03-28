@@ -175,5 +175,10 @@ export default {
   position: relative;
   height: auto !important;
 }
+
+.news-card{
+  width: 350px;
+  padding:20px;
+}
 }
 </style>

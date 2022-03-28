@@ -23,6 +23,7 @@ import VideoModal from '@/components/VideoModal.vue'
 
 import device from 'current-device'
 
+import emitter from '@/libs/emitter'
 export default {
   data () {
     return {
@@ -34,14 +35,15 @@ export default {
   },
   methods: {
   },
-  beforeMount () {
+  created () {
+  },
+  mounted () {
     if (device.mobile() === true) {
       this.isMobile = true
     } else {
       this.isMobile = false
     }
-  },
-  mounted () {
+    emitter.emit('deviceType', this.isMobile) // To VideoWall.Vue and PictureWall.Vue
   }
 }
 </script>

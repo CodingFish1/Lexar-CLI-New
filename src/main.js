@@ -33,6 +33,6 @@ new Fullpage('#fullpage', { // eslint-disable-line no-new
   responsiveWidth: 970,
 
   afterLoad: function (origin, destination, direction) {
-    emitter.emit('has-scroll', destination.index)
+    emitter.emit('has-scroll', destination.index) // To NavBar.Vue
   }
 })
