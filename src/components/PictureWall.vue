@@ -1,6 +1,6 @@
 <template>
 <section class="image-wall">
-        <div class="locator">
+        <div :class="{locator:(!isMobile),'locator-mobile':isMobile}">
             <div class="pic-content">
                 <p class="pic-title">Lexar ARES DDR5 Desktop Memory</p>
                 <p class="pic-subtitle">DDR5 Gaming Memory</p>
@@ -60,7 +60,7 @@ export default {
 }
 
 .pic-content{
-  width:400px;
+  max-width:400px;
   display: flex;
   flex-direction: column;
   top:25%;
@@ -69,7 +69,7 @@ export default {
 }
 
 .pic-content-2{
-  width:400px;
+  max-width:400px;
   display: flex;
   flex-direction: column;
   top:61%;
@@ -119,7 +119,7 @@ export default {
 .locator-mobile{
   position: relative;
   padding-bottom: 5px;
-  height:35vh;
+  height:38vh;
 }
 
 @media screen and (max-width:970px) {
@@ -161,7 +161,7 @@ export default {
   font-size: 16px;
   font-family: 'Noto Sans';
   color:#b7b7b7;
-  /* padding-top:4px; ***Dieable it when Bootstrap enabled** */
+  /* padding-top:4px; ***Disable it when Bootstrap enabled** */
 }
 }
 </style>

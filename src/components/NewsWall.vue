@@ -177,8 +177,9 @@ export default {
 }
 
 .news-card{
-  width: 350px;
+  max-width: 350px;
   padding:20px;
+  border-top: 1px solid rgb(196, 196, 196);
 }
 }
 </style>

@@ -20,7 +20,7 @@ export default {
   }
 }
 </script>
-<style>
+<style scoped>
 .footer-section{
   margin-top:30px;
   display: flex;

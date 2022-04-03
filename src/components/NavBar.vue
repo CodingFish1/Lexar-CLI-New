@@ -1,10 +1,15 @@
 <template>
 <nav :class="{navlight:!isDark}">
-    <div class="nav-container">
+    <div :class="{'nav-container':true,'nav-container-dark':!isDark}">
         <div class="logo"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
+        <input type="radio" name="slide" id="cancel-btn">
+        <input type="radio" name="slide" id="menu-btn">
         <ul class="nav-item">
+            <label for="cancel-btn" class="btn cancel-btn"><i class="bi bi-x-square"></i></label>
             <li>
-                <a href="#" class="height-ext lightword" :class={darkword:!isDark}>Products</a>
+                <a href="#" class="height-ext lightword desktop-item" :class={darkword:!isDark}>Products</a>
+                <input type="checkbox" id="showMega">
+                <label for="showMega" class="mobile-item">Products</label>
                 <div class="mega-container">
                     <div class="mega-content">
                         <div class="mega-row">
@@ -51,38 +56,53 @@
             </li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
-            <li><a href="#" class="lightword" :class={darkword:!isDark}>Shop</a></li>
             <li>
-                <a href="#" class="height-ext lightword" :class={darkword:!isDark}>Lexar</a>
+                <a href="#" class="height-ext lightword desktop-item" :class={darkword:!isDark}>Lexar</a>
+                <input type="checkbox" id="showDrop">
+                <label for="showDrop" class="mobile-item">Lexar</label>
                 <ul class="dd-menu">
+                    <!-- <router-link to="/about">点击验证动画效果</router-link> -->
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </li>
+            <i class="bi bi-cart3 lightword" :class={darkword:!isDark} @click="openCart"></i>
+            <!-- <li><a href="#" class="lightword" :class={darkword:!isDark}>Shop</a></li> -->
         </ul>
+        <label for="menu-btn" class="btn menu-btn"><i class="bi bi-list"></i></label>
     </div>
 </nav>
+<CanvasCart ref="cartdom"></CanvasCart>
 </template>
 
 <script>
-import emitter from '@/libs/emitter'
+// import emitter from '@/libs/emitter'
+import CanvasCart from '@/components/CanvasCart.vue'
 export default {
+  props: ['isDark'],
   data () {
     return {
       currSectionNum: '',
-      isDark: 'true'
+      alwaysTrue: true
+      // isDark: 'true'
     }
   },
+  components: {
+    CanvasCart
+  },
   methods: {
+    openCart () {
+      this.$refs.cartdom.cartShow()
+    }
   },
   mounted () {
-    emitter.on('has-scroll', (data) => {
-      if (data === 2 || data === 3) {
-        this.isDark = false
-      } else {
-        this.isDark = true
-      }
-    })
+    // emitter.on('has-scroll', (data) => {
+    //   if (data === 2 || data === 3) {
+    //     this.isDark = false
+    //   } else {
+    //     this.isDark = true
+    //   }
+    // })
   }
 }
 </script>
@@ -104,6 +124,11 @@ nav{
   display: flex;
   align-items:center;
   justify-content: flex-start;
+
+}
+
+.nav-container-dark{
+  box-shadow:2px 0px 3px #000;
 }
 
 .nav-container:hover{
@@ -124,7 +149,7 @@ nav{
 .lightword{
   font-family: 'Noto Sans';
   list-style: none;
-  padding-left:45px;
+  margin-left:0px;
   color:white;
   text-decoration: none;
 }
@@ -170,23 +195,29 @@ nav{
 .darkword{
   font-family: 'Noto Sans';
   list-style: none;
-  padding-left:45px;
+  margin-left:45px;
   color:black;
   text-decoration: none;
 }
 
-.nav-container:hover li a{
+.nav-container:hover li a,
+.nav-container:hover i {
   font-family: 'Noto Sans';
   list-style: none;
   color:white;
   text-decoration: none;
 }
 
-.nav-container li a:hover{
+.nav-container li a:hover,
+.nav-container i:hover{
   font-family: 'Noto Sans';
   list-style: none;
   color:#128c9f;
   text-decoration: none;
+}
+
+.bi-cart3{
+  margin-left:320px;
 }
 /*******/
 
@@ -270,7 +301,36 @@ font-weight: bold;
   display: block;
 }
 
+.nav-item .mobile-item{
+  display: none;
+}
+
+.nav-item input{
+  display:none;
+}
+
+.cancel-btn,
+.menu-btn{
+  color:#f2f2f2;
+  font-size:20px;
+  cursor:pointer;
+  position: absolute;
+  right:30px;
+  top:10px;
+  display: none;
+}
+
 @media screen and (max-width:970px) {
+
+  .cancel-btn,
+  .menu-btn{
+  display: block;
+}
+
+.bi-cart3{
+  margin-left:30px;
+}
+
   .logo{
   max-width:10%;
   max-height:10%;
@@ -285,11 +345,24 @@ font-weight: bold;
     max-width:350px;
     background:#7f7f7f;
     top:0;
-    left:0;
-    visibility: hidden; /*ON/OFF**/
-    /* overflow-y: auto; */
+    left:-100%;
+    visibility: show; /*ON/OFF**/
+    overflow-y: auto;
     line-height: 50px;
     padding:50px 10px;
+    transition: all 0.3s ease;
+  }
+
+  #menu-btn:checked ~ .nav-item{
+    left:0%;
+  }
+
+  #menu-btn:checked ~ .menu-btn{
+    display: none;
+  }
+
+  .nav-item::-webkit-scrollbar{
+    width:0px;
   }
 
   .nav-item li{
@@ -298,20 +371,28 @@ font-weight: bold;
 
   .nav-item li a{
     padding:0 20px;
-    display:block;
+    /* display:block; */
     font-size: 20px;
   }
 
   .dd-menu{
-  background: #3f4041;
+  background: #7f7f7f;
   line-height: 45px;
   position: static; /*Why*/
   opacity:1;
-  visibility: hidden;
+  visibility: visible;
   width:100%;
-  padding-left: 20px;
+  margin-left: 0px;
   top:65px;
+  max-height: 0px;
+  overflow: hidden;
   }
+
+  #showDrop:checked ~ .dd-menu,
+  #showMega:checked ~ .mega-container{
+    max-height: 100%;
+  }
+
   .drop-menu li{
     margin:0;
   }
@@ -320,6 +401,68 @@ font-weight: bold;
     font-size:18px;
     border-radius:5px;
   }
+
+  .nav-item .mobile-item{
+    display:block;
+    font-size:20px;
+    color: #f2f2f2;
+    padding-left: 20px;
+    cursor:pointer;
+  }
+
+  .nav-item .desktop-item{
+    display: none;
+  }
+
+  /* .nav-item .mobile-item:hover{
+    background: #3a3b3c;
+  } */
+.nav-item input{
+  display:none;
+}
+
+.mega-container{ /*If any issues, jump to lines 15**/
+  position: static;
+  border-top: 1px solid white;
+  top:65px;
+  width:100%;
+  opacity: 1;
+  visibility: visible;
+  background: #3f4041;
+  max-height: 0px;
+  overflow: hidden;
+}
+
+.mega-content{
+  padding:25px 20px 0px 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.mega-row{
+  width:100%;
+  margin-bottom: 15px;
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+
+.mega-item{
+  border-left: 0px;
+  padding-left: 15px;
+}
+
+.mega-item li{
+  margin:0;
+}
+
+.mega-row header{
+  font-size:18px;
+}
+
+.mega-row:nth-child(1),
+.mega-row:nth-child(2){
+  border-top:0px;
+}
+
 }
 
 </style>
