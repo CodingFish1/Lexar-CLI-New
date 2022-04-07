@@ -1,5 +1,7 @@
 <template>
-  <router-view v-if='false'></router-view>
+  <!-- <router-view v-if='true'></router-view>
+  <FrontPage v-else></FrontPage> -->
+  <router-view v-if='true'></router-view>
   <FrontPage v-else></FrontPage>
 </template>
 

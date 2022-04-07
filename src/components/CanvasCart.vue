@@ -28,11 +28,7 @@ export default {
     }
   },
   created () {
-    // emitter.on('openModal', (data) => {
-    //   this.urlInlet = data
-    //   console.log(this.urlInlet)
-    //   this.modalOn.show()
-    // })
+
   },
   mounted () {
     this.canvasOn = new Offcanvas(this.$refs.canvas)
@@ -46,7 +42,6 @@ export default {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
         .then((res) => {
           this.cartItem = res.data.data.carts
-          console.log(this.cartItem)
         })
         .catch((error) => { console.dir(error) })
     }

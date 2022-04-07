@@ -1,5 +1,5 @@
 <template>
-<nav :class="{navlight:!isDark}">
+<nav :class="{navlight:!isDark}" id="nBar">
     <div :class="{'nav-container':true,'nav-container-dark':!isDark}">
         <div class="logo"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
         <input type="radio" name="slide" id="cancel-btn">
@@ -61,7 +61,6 @@
                 <input type="checkbox" id="showDrop">
                 <label for="showDrop" class="mobile-item">Lexar</label>
                 <ul class="dd-menu">
-                    <!-- <router-link to="/about">点击验证动画效果</router-link> -->
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Contact Us</a></li>
                 </ul>
@@ -70,21 +69,23 @@
             <!-- <li><a href="#" class="lightword" :class={darkword:!isDark}>Shop</a></li> -->
         </ul>
         <label for="menu-btn" class="btn menu-btn"><i class="bi bi-list"></i></label>
+        <span v-if="cartNum" class="badge rounded-pill bg-danger">{{cartNum}}</span>
     </div>
 </nav>
 <CanvasCart ref="cartdom"></CanvasCart>
 </template>
 
 <script>
-// import emitter from '@/libs/emitter'
+import emitter from '@/libs/emitter'
 import CanvasCart from '@/components/CanvasCart.vue'
 export default {
   props: ['isDark'],
   data () {
     return {
       currSectionNum: '',
-      alwaysTrue: true
+      alwaysTrue: true,
       // isDark: 'true'
+      cartNum: ''
     }
   },
   components: {
@@ -93,16 +94,23 @@ export default {
   methods: {
     openCart () {
       this.$refs.cartdom.cartShow()
+    },
+    getCart () {
+      this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
+        .then((res) => {
+          this.cartNum = res.data.data.carts.length
+          console.log(this.cartNum)
+        })
+        .catch((error) => { console.dir(error) })
     }
   },
+  created () {
+    emitter.on('cartToggle', () => {
+      this.getCart()
+    })
+  },
   mounted () {
-    // emitter.on('has-scroll', (data) => {
-    //   if (data === 2 || data === 3) {
-    //     this.isDark = false
-    //   } else {
-    //     this.isDark = true
-    //   }
-    // })
+    this.getCart()
   }
 }
 </script>
@@ -149,7 +157,7 @@ nav{
 .lightword{
   font-family: 'Noto Sans';
   list-style: none;
-  margin-left:0px;
+  margin-left:60px;
   color:white;
   text-decoration: none;
 }
@@ -195,7 +203,7 @@ nav{
 .darkword{
   font-family: 'Noto Sans';
   list-style: none;
-  margin-left:45px;
+  margin-left:60px;
   color:black;
   text-decoration: none;
 }
@@ -305,8 +313,10 @@ font-weight: bold;
   display: none;
 }
 
-.nav-item input{
+.nav-item input,
+.nav-container input{
   display:none;
+  appearance: none;
 }
 
 .cancel-btn,
@@ -327,14 +337,10 @@ font-weight: bold;
   display: block;
 }
 
-.bi-cart3{
-  margin-left:30px;
-}
-
   .logo{
-  max-width:10%;
-  max-height:10%;
-  background-color: #7f7f7f;
+  max-width:30%;
+  max-height:30%;
+  background-color: white;
   padding:10px;
 }
   .nav-item{
@@ -353,6 +359,18 @@ font-weight: bold;
     transition: all 0.3s ease;
   }
 
+.lightword{
+  font-family: 'Noto Sans';
+  list-style: none;
+  margin-left:60px;
+  color:white;
+  text-decoration: none;
+}
+
+.bi-cart3{
+  margin-left:30px;
+}
+
   #menu-btn:checked ~ .nav-item{
     left:0%;
   }
@@ -370,7 +388,7 @@ font-weight: bold;
   }
 
   .nav-item li a{
-    padding:0 20px;
+    padding:0px 20px;
     /* display:block; */
     font-size: 20px;
   }
@@ -382,7 +400,7 @@ font-weight: bold;
   opacity:1;
   visibility: visible;
   width:100%;
-  margin-left: 0px;
+  margin-left: -20px;
   top:65px;
   max-height: 0px;
   overflow: hidden;
@@ -417,8 +435,10 @@ font-weight: bold;
   /* .nav-item .mobile-item:hover{
     background: #3a3b3c;
   } */
-.nav-item input{
+.nav-item input,
+.nav-container input{
   display:none;
+  appearance: none;
 }
 
 .mega-container{ /*If any issues, jump to lines 15**/
@@ -461,6 +481,10 @@ font-weight: bold;
 .mega-row:nth-child(1),
 .mega-row:nth-child(2){
   border-top:0px;
+}
+
+.bi-list{
+  color:black;
 }
 
 }
