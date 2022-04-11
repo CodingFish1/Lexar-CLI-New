@@ -1,7 +1,5 @@
 <template>
-  <!-- <router-view v-if='true'></router-view>
-  <FrontPage v-else></FrontPage> -->
-  <router-view v-if='true'></router-view>
+  <router-view v-if="hybridMode"></router-view>
   <FrontPage v-else></FrontPage>
 </template>
 
@@ -14,6 +12,7 @@ import emitter from '@/libs/emitter'
 export default {
   data () {
     return {
+      hybridMode: false,
       isMobile: ''
     }
   },
@@ -23,6 +22,9 @@ export default {
   methods: {
   },
   created () {
+    emitter.on('modeSwitcher', () => {
+      this.hybridMode = true
+    })
   },
   mounted () {
     if (device.mobile() === true) {

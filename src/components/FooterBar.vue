@@ -1,6 +1,6 @@
 <template>
     <footer class="footer-section" >
-        <p>XXX Limited 2022. All rights reserved. XXX and its logo are registered trademarks of XXX Limited.
+        <p>Longsys Limited 2022. All rights reserved. Lexar and its logo are registered trademarks of Longsys Limited.
           Other products, brand names, company names and logos are trademarks of their respective owners.</p>
         <p>All images and descriptions discussed herein are for reference purposes only.</p>
         <div class="content-layout">

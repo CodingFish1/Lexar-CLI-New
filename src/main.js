@@ -42,3 +42,6 @@ new fullpage('#fullpage', { // eslint-disable-line
     emitter.emit('has-scroll', destination.index) // To NavBar.Vue
   }
 })
+emitter.on('modeSwitcher', () => {
+  fullpage_api.destroy('all') // eslint-disable-line
+})

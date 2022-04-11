@@ -33,6 +33,7 @@ export default {
   methods: {
   },
   created () {
+
   },
   mounted () {
     if (device.mobile() === true) {
@@ -40,7 +41,6 @@ export default {
       console.log(this.isMobile)
     } else {
       this.isMobile = false
-      console.log(this.isMobile)
     }
     emitter.emit('deviceType', this.isMobile) // To PictureWall.Vue
 

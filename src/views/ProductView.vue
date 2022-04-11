@@ -1,18 +1,20 @@
 <template>
 <NavBar :is-dark="isDark"></NavBar>
 <SwiperComponent></SwiperComponent>
-<div class="product-layout">
+<div class="product-layout container">
   <div class="sticky-parent">
     <SideBar></SideBar>
   </div>
   <ProductCard></ProductCard>
 </div>
+<FooterBar></FooterBar>
 </template>
 
 <script>
 import SwiperComponent from '@/components/gadgets/SwiperComponent.vue'
 import ProductCard from '@/components/gadgets/ProductCard.vue'
 import SideBar from '@/components/gadgets/SideBar.vue'
+import FooterBar from '@/components/FooterBar.vue'
 export default {
   data () {
     return {
@@ -20,7 +22,7 @@ export default {
       productList: ''
     }
   },
-  components: { SwiperComponent, ProductCard, SideBar },
+  components: { SwiperComponent, ProductCard, SideBar, FooterBar },
   methods: {
   },
   mounted () {
@@ -29,12 +31,17 @@ export default {
 </script>
 
 <style scoped>
-/* body{
-  background: #f4f5f6
-} */
 .product-layout{
   display: flex;
   flex-direction: row;
   padding:16px;
+}
+
+@media screen and (max-width:670px) {
+.product-layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 }
 </style>

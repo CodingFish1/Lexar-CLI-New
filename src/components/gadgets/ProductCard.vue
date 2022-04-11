@@ -1,19 +1,22 @@
 <template>
-<div class="card-layout">
-  <div class="card"  v-for="(item,index) in productList" :key="index">
-    <div class="card-head">
-      <img :src="item.imageUrl" alt="">
-    </div>
-    <div class="card-body">
-      <h3 class="card-title">{{item.title}}</h3>
-      <p>Hot Price: ${{item.price}}</p>
-      <div class="botton-group">
-        <button class="learn-more">Learn More</button>
-        <button class="add2cart" @click="add2CartSingle(item.id)">Add To Cart</button>
+<div v-if='displayList'>
+  <div class="card-layout">
+    <div class="card"  v-for="(item,index) in displayList" :key="index">
+      <div class="card-head">
+        <img :src="item.imageUrl" alt="">
+      </div>
+      <div class="card-body">
+        <h3 class="card-title">{{item.title}}</h3>
+        <p>Hot Price: ${{item.price}}</p>
+        <div class="botton-group">
+          <button class="learn-more">Learn More</button>
+          <button class="add2cart" @click="add2CartSingle(item.id)">Add To Cart</button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<p v-else>Nothing</p>
 </template>
 
 <script>
@@ -21,13 +24,18 @@ import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
-      productList: ''
+      productList: '',
+      searchResult: '',
+      displayList: ''
     }
   },
   created () {
     emitter.on('category', (data) => {
       this.getProducts(data)
       console.log(data)
+    })
+    emitter.on('searching', (data) => {
+      this.searchProduct(data)
     })
   },
   mounted () {
@@ -43,6 +51,7 @@ export default {
       this.$http.get(url)
         .then((res) => {
           this.productList = res.data.products
+          this.displayList = res.data.products
         })
         .catch((error) => { console.dir(error) })
     },
@@ -62,6 +71,17 @@ export default {
             .catch((error) => { console.dir(error) })
         }
         )
+    },
+    searchProduct (input) {
+      if (input === '') {
+        this.getProducts()
+      }
+      const strArr = input.split(' ')
+      strArr.forEach(element => {
+        const temp = this.productList.filter(item => item.title.toUpperCase().includes(element.toUpperCase()) ||
+        (item.description.toUpperCase().includes(element.toUpperCase())))
+        this.displayList = [...new Set(temp)]
+      })
     }
 
   }
@@ -69,6 +89,11 @@ export default {
 </script>
 
 <style scope>
+p,
+h3{
+  font-family: 'Noto Sans';
+}
+
 .card-layout{
   position: relative;
   margin-left:20px;
@@ -83,7 +108,7 @@ img {
 .card {
   margin:10px;
   padding:5px;
-  max-width: 300px;
+  max-width: 275px;
   max-height: 600px;
   background: white;
   /* border-radius: 1em;
@@ -128,5 +153,13 @@ img {
 .add2cart{
   background-color: black;
   color:white;
+}
+
+@media screen and (max-width:670px) {
+.card-layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 }
 </style>
