@@ -43,9 +43,10 @@ export default {
   },
   methods: {
     getProducts (category) {
+      console.log(this.$route.query.category)
       let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
-      if (category) {
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`
+      if (category || this.$route.query.category) {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category || this.$route.query.category}`
       }
 
       this.$http.get(url)

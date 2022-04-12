@@ -11,11 +11,11 @@
                 <a href="#" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</a>
               </router-link>
               <div id="dd-menu">
-                <a href="" @click="modeSwitcher('SSD')">SSD</a>
-                <a href="" @click="modeSwitcher('Memory Card')">Memory Card</a>
-                <a href="" @click="modeSwitcher('Memory')">Memory</a>
-                <a href="" @click="modeSwitcher('USB Flash Disk')">Flash Disk</a>
-                <a href="" @click="modeSwitcher('Card Reader')">Card Reader</a>
+                <a href="" @click.prevent="modeSwitcher('SSD')">SSD</a>
+                <a href="" @click.prevent="modeSwitcher('Memory Card')">Memory Card</a>
+                <a href="" @click.prevent="modeSwitcher('Memory')">Memory</a>
+                <a href="" @click.prevent="modeSwitcher('USB Flash Disk')">Flash Disk</a>
+                <a href="" @click.prevent="modeSwitcher('Card Reader')">Card Reader</a>
               </div>
             </li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
@@ -66,12 +66,12 @@ export default {
         .catch((error) => { console.dir(error) })
     },
     modeSwitcher (dist) {
-      // if (dist) {
-      //   this.$router.push({ path: '/products', query: { category: 'SSD' } })
-      // }
-      this.$router.push({ path: '/products', query: { category: 'SSD' } })
+      if (dist) {
+        this.$router.push({ path: '/products', query: { category: dist } })
+        emitter.emit('category', dist) // To ProductCard.vue
+      }
       emitter.emit('modeSwitcher')
-      console.log(dist)
+      // console.log(dist)
     },
     goFrontPage () {
       this.$router.go('/')
@@ -87,7 +87,6 @@ export default {
     if (this.getCurrRouter() !== undefined) {
       this.barBgColor = '#3f4041'
       this.wordColor = '#FFFFFF'
-      console.log(this.barBgColor)
     } else {
       this.barBgColor = '#FFFFFF'
       this.wordColor = '#000000'
