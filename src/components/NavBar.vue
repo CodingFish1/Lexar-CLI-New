@@ -70,7 +70,7 @@ export default {
       //   this.$router.push({ path: '/products', query: { category: 'SSD' } })
       // }
       this.$router.push({ path: '/products', query: { category: 'SSD' } })
-      // emitter.emit('modeSwitcher')
+      emitter.emit('modeSwitcher')
       console.log(dist)
     },
     goFrontPage () {
