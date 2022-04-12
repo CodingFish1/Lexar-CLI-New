@@ -4,19 +4,12 @@
         <div class="logo"  @click="goFrontPage"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
         <input type="radio" name="slide" id="cancel-btn">
         <input type="radio" name="slide" id="menu-btn">
-        <ul class="nav-item dd-parent">
+        <ul class="nav-item">
             <label for="cancel-btn" class="btn cancel-btn"><i class="bi bi-x-square"></i></label>
-            <li class="dd-toggle">
+            <li>
               <router-link to="/products" class="routerLink">
-                <a href="#" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</a>
+                <a href="#" class="lightword" @click="modeSwitcher" :class={darkword:!isDark}>Products</a>
               </router-link>
-              <div id="dd-menu">
-                <a href="" @click="modeSwitcher('SSD')">SSD</a>
-                <a href="" @click="modeSwitcher('Memory Card')">Memory Card</a>
-                <a href="" @click="modeSwitcher('Memory')">Memory</a>
-                <a href="" @click="modeSwitcher('USB Flash Disk')">Flash Disk</a>
-                <a href="" @click="modeSwitcher('Card Reader')">Card Reader</a>
-              </div>
             </li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
@@ -25,14 +18,14 @@
                 <a href="#" class="lightword" @click="modeSwitcher" :class={darkword:!isDark}>Lexar</a>
               </router-link>
             </li>
-            <i class="bi bi-cart3 lightword" :class={darkword:!isDark} @click="openCart">
+              <i class="bi bi-cart3 lightword" :class={darkword:!isDark} @click="openCart">
                   <span v-if="cartNum" class="badge rounded-pill bg-danger">{{cartNum}}</span>
-            </i>
+              </i>
         </ul>
-
-        <label for="menu-btn" class="btn menu-btn">
+          <label for="menu-btn" class="btn menu-btn">
             <i class="bi bi-list" :class="{'bi-list-black':!isDark}"></i>
-        </label>
+          </label>
+
     </div>
 </nav>
 <CanvasCart ref="cartdom"></CanvasCart>
@@ -65,13 +58,8 @@ export default {
         })
         .catch((error) => { console.dir(error) })
     },
-    modeSwitcher (dist) {
-      // if (dist) {
-      //   this.$router.push({ path: '/products', query: { category: 'SSD' } })
-      // }
-      this.$router.push({ path: '/products', query: { category: 'SSD' } })
-      // emitter.emit('modeSwitcher')
-      console.log(dist)
+    modeSwitcher () {
+      emitter.emit('modeSwitcher')
     },
     goFrontPage () {
       this.$router.go('/')
@@ -209,40 +197,6 @@ nav{
   right:30px;
   top:10px;
   display: none;
-}
-
-/* **drop-down menu***/
-#dd-menu{
-  visibility: hidden;
-  position: absolute;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  text-decoration: none;
-  list-style: none;
-  width:100%;
-  left:0px;
-  top:80px;
-  padding:10px;
-  background-color:#3f4041;
-}
-
-.dd-toggle:hover #dd-menu{
-  visibility: visible;
-  border-top:2px solid #7f7f7f;
-  transition: all 0.3s ease;
-}
-
-#dd-menu a{
-  text-decoration: none;
-  display: block;
-  font-family: 'Noto Sans';
-  padding:0px 10px;
-  color:white;
-}
-
-.height-ext{
-  padding-bottom: 40px; /*height dependent on the gap you want to fill*/
 }
 
 @media screen and (max-width:970px) {

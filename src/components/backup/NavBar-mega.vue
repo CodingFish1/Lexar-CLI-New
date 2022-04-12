@@ -12,7 +12,7 @@
                 <input type="checkbox" id="showMega">
                 <label for="showMega" class="mobile-item">Products</label>
               </router-link>
-                <!-- <div class="mega-container">
+                <div class="mega-container">
                     <div class="mega-content">
                         <div class="mega-row">
                             <img src="../assets/image/SL660-PR_1.jpg" alt="">
@@ -54,7 +54,7 @@
                             </ul>
                         </div>
                     </div>
-                </div> -->
+                </div>
             </li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
