@@ -34,6 +34,7 @@ export default {
   methods: { // To ProductView
     getQuery (category) {
       emitter.emit('category', category)
+      this.$router.push({ path: '/products', query: { category } })
     },
     searchBox () {
       emitter.emit('searching', this.$refs.inputContent.value)
