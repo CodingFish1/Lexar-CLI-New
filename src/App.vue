@@ -1,5 +1,5 @@
 <template>
-  <router-view v-if="hybridMode"></router-view>
+  <router-view v-if="hybridMode" :key="$route.fullPath"></router-view>
   <FrontPage v-else></FrontPage>
 </template>
 
@@ -25,6 +25,19 @@ export default {
     emitter.on('modeSwitcher', () => {
       this.hybridMode = true
     })
+    // this.$router.afterEach((to, from, next) => {
+    //   console.log(to.fullPath)
+    //   if (to.fullPath === '/') {
+    //     next(this.$router.go(0))
+    //   } else {
+    //     next()
+    //   }
+    // })
+
+    // this.$router.beforeEach((to, from) => {
+    //   console.log(to.fullPath)
+    // }
+    // )
   },
   mounted () {
     if (device.mobile() === true) {

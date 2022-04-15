@@ -1,7 +1,7 @@
 <template>
 <nav :class="{navlight:!isDark}" id="nBar">
     <div :class="{'nav-container':true,'nav-container-dark':!isDark}">
-        <div class="logo"  @click="goFrontPage"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></div>
+        <a class="logo" href="/"><img src="../assets/image/lexarlogo.svg" alt="Lexar logo"></a>
         <input type="radio" name="slide" id="cancel-btn">
         <input type="radio" name="slide" id="menu-btn">
         <ul class="nav-item dd-parent">
@@ -73,9 +73,9 @@ export default {
       emitter.emit('modeSwitcher')
       // console.log(dist)
     },
-    goFrontPage () {
-      this.$router.go('/')
-    },
+    // goFrontPage () {
+    //   this.$router.go(0)
+    // },
     getCurrRouter () {
       return this.$route.name
     }
@@ -99,8 +99,10 @@ export default {
 </script>
 
 <style scoped>
+
 .logo{
   cursor: pointer;
+  display: block;;
 }
 
 .routerLink{

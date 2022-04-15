@@ -39,13 +39,15 @@ export default {
     })
   },
   mounted () {
-    this.getProducts()
+    this.getProducts('all')
   },
   methods: {
     getProducts (category) {
-      console.log(this.$route.query.category)
-      let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
-      if (category || this.$route.query.category) {
+      let url = ''
+      if (category === 'all') {
+        console.log(category)
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
+      } else {
         url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category || this.$route.query.category}`
       }
 

@@ -10,7 +10,7 @@
     <div class="category">
         <h3>Products</h3>
           <div class="category-item">
-            <h5 @click="getQuery('')">All</h5>
+            <h5 @click="getQuery('all')">All</h5>
             <h5 @click="getQuery('SSD')">SDD</h5>
             <h5 @click="getQuery('Memory Card')">Memory Card</h5>
             <h5 @click="getQuery('Memory')">Memory</h5>

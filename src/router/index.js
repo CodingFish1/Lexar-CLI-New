@@ -20,7 +20,16 @@ const routes = [
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  linkActiveClass: 'active',
+  scrollBehavior (to, from, savedPosition) {
+    if (to.fullPath.match('products')) {
+      console.log(to.fullPath)
+      return {
+        top: 2000
+      }
+    }
+  }
 })
 
 export default router
