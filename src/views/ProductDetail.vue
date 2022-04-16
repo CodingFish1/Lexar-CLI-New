@@ -1,8 +1,10 @@
 <template>
-<NavBar :is-dark="isDark"></NavBar>
+<p>HIIIIfffffffffffffffffffffffffffffffffffffffffffffIII</p>
 </template>
 
 <script>
+// import SideBar from '@/components/gadgets/SideBar.vue'
+// import FooterBar from '@/components/FooterBar.vue'
 import emitter from '@/libs/emitter.js'
 export default {
   data () {
@@ -10,14 +12,9 @@ export default {
       isDark: false
     }
   },
+  // components: { SideBar, FooterBar },
   created () {
-    emitter.on('category', (data) => {
-      this.getProducts(data)
-      console.log(data)
-    })
-    emitter.on('searching', (data) => {
-      this.searchProduct(data)
-    })
+    console.log(this.$route.params.id)
   },
   mounted () {
   },
@@ -44,4 +41,25 @@ export default {
 </script>
 
 <style scope>
+.product-layout{
+  display: flex;
+  flex-direction: row;
+  padding:16px;
+}
+
+@media screen and (max-width:670px) {
+.product-layout{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+}
 </style>
+
+<!-- <NavBar :is-dark="isDark"></NavBar> -->
+<!-- <div class="product-layout container">
+  <div class="sticky-parent"> -->
+    <!-- <SideBar></SideBar> -->
+  <!-- </div>
+</div> -->
+<!-- <FooterBar></FooterBar> -->

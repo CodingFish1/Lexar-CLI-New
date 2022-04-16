@@ -14,22 +14,30 @@ const routes = [
   {
     path: '/products',
     name: 'products',
-    component: () => import('../views/ProductView.vue')
+    component: () => import('../views/ProductList.vue'),
+    children: [
+
+    ]
+  },
+  {
+    path: '/product/:id',
+    name: 'productdetail',
+    component: () => import('../views/ProductDetail.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes,
-  linkActiveClass: 'active',
-  scrollBehavior (to, from, savedPosition) {
-    if (to.fullPath.match('products')) {
-      console.log(to.fullPath)
-      return {
-        top: 2000
-      }
-    }
-  }
+  routes
+  // linkActiveClass: 'active',
+  // scrollBehavior (to, from, savedPosition) {
+  //   if (to.fullPath.match('products')) {
+  //     console.log(to.fullPath)
+  //     return {
+  //       top: 2000
+  //     }
+  //   }
+  // }
 })
 
 export default router

@@ -32,25 +32,22 @@ export default {
   created () {
     emitter.on('category', (data) => {
       this.getProducts(data)
-      console.log(data)
     })
     emitter.on('searching', (data) => {
       this.searchProduct(data)
     })
   },
   mounted () {
-    this.getProducts('all')
+    this.getProducts()
   },
   methods: {
     getProducts (category) {
-      let url = ''
-      if (category === 'all') {
-        console.log(category)
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
-      } else {
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category || this.$route.query.category}`
+      console.log('Category:', category)
+      console.log('$route:', this.$route.query.category)
+      let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
+      if (category) {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`
       }
-
       this.$http.get(url)
         .then((res) => {
           this.productList = res.data.products
@@ -86,7 +83,6 @@ export default {
         this.displayList = [...new Set(temp)]
       })
     }
-
   }
 }
 </script>
@@ -96,18 +92,15 @@ p,
 h3{
   font-family: 'Noto Sans';
 }
-
 .card-layout{
   position: relative;
   margin-left:20px;
   display: flex;
   flex-flow: row wrap
 }
-
 img {
   max-width: 100%;
 }
-
 .card {
   margin:10px;
   padding:5px;
@@ -117,12 +110,10 @@ img {
   /* border-radius: 1em;
   overflow: hidden; */
 }
-
 .card:hover{
   box-shadow:3px 8px 16px rgb(170, 170, 170);
   border:1px solid grey;
 }
-
 .card-head {
   border-radius: 1em 1em 0 0;
 }
@@ -134,30 +125,24 @@ img {
   margin: 0;
   text-align: center;
 }
-
 .card-body p {
   font-size:18px;
   text-align: center;
 }
-
 .botton-group{
   display: flex;
 }
-
 .card-body button {
   margin-inline: auto;
   display: block;
 }
-
 .learn-more{
   background-color: white;
 }
-
 .add2cart{
   background-color: black;
   color:white;
 }
-
 @media screen and (max-width:670px) {
 .card-layout{
   display: flex;

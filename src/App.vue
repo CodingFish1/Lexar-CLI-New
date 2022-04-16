@@ -1,5 +1,5 @@
 <template>
-  <router-view v-if="hybridMode" :key="$route.fullPath"></router-view>
+  <router-view v-if="hybridMode"></router-view>
   <FrontPage v-else></FrontPage>
 </template>
 
