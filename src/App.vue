@@ -25,7 +25,7 @@ export default {
     emitter.on('modeSwitcher', () => {
       this.hybridMode = true
     })
-    // this.$router.afterEach((to, from, next) => {
+    // this.$router.beforeEach((to, from, next) => {
     //   console.log(to.fullPath)
     //   if (to.fullPath === '/') {
     //     next(this.$router.go(0))

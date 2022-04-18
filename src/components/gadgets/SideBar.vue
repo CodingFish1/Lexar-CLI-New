@@ -9,14 +9,20 @@
     </div>
     <div class="category">
         <h3>Products</h3>
-          <div class="category-item">
-            <h5 @click.prevent="getQuery('All')">All</h5>
+        <div class="category-item">
+          <router-link class="link" active-class="actived" to="/products?category=All">All</router-link>
+          <router-link class="link" active-class="actived" to="/products?category=SSD">SSD</router-link>
+          <router-link class="link" active-class="actived" to="/products?category=Memory">Memory Card</router-link>
+          <router-link class="link" active-class="actived" to="/products?category=Memory">Memory</router-link>
+          <router-link class="link" active-class="actived" to="/products?category=USB Flash Disk">Flash Disk</router-link>
+          <router-link class="link" active-class="actived" to="/products?category=Card Reader">Card Reader</router-link>
+            <!-- <h5 @click.prevent="getQuery('All')">All</h5>
             <h5 @click.prevent="getQuery('SSD')">SDD</h5>
             <h5 @click.prevent="getQuery('Memory Card')">Memory Card</h5>
             <h5 @click.prevent="getQuery('Memory')">Memory</h5>
             <h5 @click.prevent="getQuery('USB Flash Disk')">Flash Disk</h5>
-            <h5 @click.prevent="getQuery('Card Reader')">Card Reader</h5>
-          </div>
+            <h5 @click.prevent="getQuery('Card Reader')">Card Reader</h5> -->
+        </div>
     </div>
 </div>
 </template>
@@ -31,15 +37,10 @@ export default {
   },
   mounted () {
   },
-  methods: { // To ProductView
-    getQuery (category) {
-      if (category !== 'All') {
-        this.$router.push({ path: '/products', query: { category: category } })
-        emitter.emit('category', category)
-      } else {
-        emitter.emit('category', undefined)
-      }
-    },
+  methods: { // To ProductCard
+    // getQuery (category) {
+    //   emitter.emit('category', category)
+    // },
     searchBox () {
       emitter.emit('searching', this.$refs.inputContent.value)
     }
@@ -47,8 +48,8 @@ export default {
 }
 </script>
 
-<style scope>
-h3,h5{
+<style scoped>
+a,h3,h5{
   font-family: 'Noto Sans';
 }
 .search-layout{
@@ -69,6 +70,18 @@ h3,h5{
   margin-top: 10px;
   margin-bottom: 10px;
   padding:8px;
+}
+
+.category-item a{
+  text-decoration: none;
+  font-size:20px;
+  display: block;
+  color:black;
+  white-space: nowrap;
+}
+
+.actived{
+  border-left: 3px solid #128c9f;
 }
 @media screen and (max-width:670px) {
 .search-layout{
@@ -100,7 +113,15 @@ h3,h5{
 ::-webkit-scrollbar {
   display: none;
 }
-.category-item h5{
+/* .category-item h5{
+  padding:5px;
+  margin:10px 20px 10px 0px;
+  display: inline-block;
+  border:1px solid black;
+  white-space: nowrap;
+} */
+
+.category-item .link{
   padding:5px;
   margin:10px 20px 10px 0px;
   display: inline-block;

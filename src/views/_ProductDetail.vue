@@ -1,22 +1,39 @@
 <template>
-<p>HIIIIfffffffffffffffffffffffffffffffffffffffffffffIII</p>
+<NavBar :is-dark="isDark"></NavBar>
+<SwiperComponent></SwiperComponent>
+<div class="product-layout container">
+  <div class="sticky-parent">
+    <SideBar></SideBar>
+  </div>
+  <ProductCart></ProductCart>
+</div>
+<FooterBar></FooterBar>
 </template>
 
 <script>
-// import SideBar from '@/components/gadgets/SideBar.vue'
-// import FooterBar from '@/components/FooterBar.vue'
+import SwiperComponent from '@/components/gadgets/SwiperComponent.vue'
+import SideBar from '@/components/gadgets/SideBar.vue'
+import ProductCart from '@/components/gadgets/ProductCart.vue'
+import FooterBar from '@/components/FooterBar.vue'
 import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
-      isDark: false
+      isDark: false,
+      filler: ''
     }
   },
-  // components: { SideBar, FooterBar },
+  components: { FooterBar, ProductCart, SwiperComponent, SideBar },
   created () {
-    console.log(this.$route.params.id)
+    // console.log(this.$route.params.id)
   },
   mounted () {
+    const resizeObserver = new ResizeObserver((entries) => {
+      entries.forEach((entry) => {
+        this.filler = entry.contentRect.height + 'px'
+      })
+    })
+    resizeObserver.observe(document.querySelector('#nBar'))
   },
   methods: {
     add2CartSingle (idIn) {
@@ -41,7 +58,9 @@ export default {
 </script>
 
 <style scope>
+
 .product-layout{
+  padding-top: v-bind(filler);
   display: flex;
   flex-direction: row;
   padding:16px;
@@ -55,11 +74,3 @@ export default {
 }
 }
 </style>
-
-<!-- <NavBar :is-dark="isDark"></NavBar> -->
-<!-- <div class="product-layout container">
-  <div class="sticky-parent"> -->
-    <!-- <SideBar></SideBar> -->
-  <!-- </div>
-</div> -->
-<!-- <FooterBar></FooterBar> -->

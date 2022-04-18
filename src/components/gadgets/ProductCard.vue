@@ -9,7 +9,9 @@
         <h3 class="card-title">{{item.title}}</h3>
         <p>Hot Price: ${{item.price}}</p>
         <div class="botton-group">
-          <button class="learn-more">Learn More</button>
+          <router-link :to="`/products/${item.id}`">
+              <button class="learn-more">Learn More</button>
+          </router-link>
           <button class="add2cart" @click="add2CartSingle(item.id)">Add To Cart</button>
         </div>
       </div>
@@ -30,24 +32,41 @@ export default {
     }
   },
   created () {
-    emitter.on('category', (data) => {
-      this.getProducts(data)
-    })
+    // emitter.on('category', (data) => {
+    //   this.getProducts(data)
+    // })
     emitter.on('searching', (data) => {
       this.searchProduct(data)
     })
+    this.$watch(
+      () => this.$route.params,
+      (toParams, previousParams) => {
+        if (this.$route.query.category !== undefined) {
+          this.getProducts(this.$route.query.category)
+        }
+      }
+    )
   },
   mounted () {
-    this.getProducts()
+    this.getProducts('All')
+  },
+  beforeUnmount () {
+    // emitter.off('category')
+    emitter.off('searching')
   },
   methods: {
     getProducts (category) {
-      console.log('Category:', category)
-      console.log('$route:', this.$route.query.category)
-      let url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
-      if (category) {
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`
+      let url = ''
+      if (category === 'All') {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
+        // this.$router.push({ path: '/products', query: { category: category } })
       }
+
+      if (category !== 'All') {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`
+        this.$router.push({ path: '/products', query: { category: category } })
+      }
+
       this.$http.get(url)
         .then((res) => {
           this.productList = res.data.products
@@ -82,6 +101,20 @@ export default {
         (item.description.toUpperCase().includes(element.toUpperCase())))
         this.displayList = [...new Set(temp)]
       })
+    },
+    add2Cart () {
+      const data = {
+        product_id: this.product.id,
+        qty: this.itemCounter
+      }
+
+      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
+        .then((res) => {
+        // loadCart.emit('loadCart',this.selectedItem)
+          console.log(res)
+          this.modalOn.hide()
+        })
+        .catch((error) => { console.dir(error) })
     }
   }
 }

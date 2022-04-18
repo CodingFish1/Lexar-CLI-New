@@ -7,9 +7,7 @@
         <ul class="nav-item dd-parent">
             <label for="cancel-btn" class="btn cancel-btn"><i class="bi bi-x-square"></i></label>
             <li class="dd-toggle">
-              <router-link to="/products" class="routerLink">
-                <a href="#" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</a>
-              </router-link>
+                <router-link to="/products?category=All" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</router-link>
               <!-- <div id="dd-menu">
                 <a href="" @click.prevent="modeSwitcher('SSD')">SSD</a>
                 <a href="" @click.prevent="modeSwitcher('Memory Card')">Memory Card</a>
@@ -21,9 +19,7 @@
             <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
             <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
             <li>
-              <router-link to="/about" class="routerLink">
-                <a href="#" class="lightword" @click="modeSwitcher" :class={darkword:!isDark}>Lexar</a>
-              </router-link>
+                <router-link to="/about" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Lexar</router-link>
             </li>
             <i class="bi bi-cart3 lightword" :class={darkword:!isDark} @click="openCart">
                   <span v-if="cartNum" class="badge rounded-pill bg-danger">{{cartNum}}</span>
@@ -65,9 +61,12 @@ export default {
         })
         .catch((error) => { console.dir(error) })
     },
+    modeSwitcher_p () {
+      // emitter.emit('category', undefined)
+      // this.$router.push('/products')
+      emitter.emit('modeSwitcher')
+    },
     modeSwitcher () {
-      emitter.emit('category', undefined)
-      this.$router.push('/products')
       emitter.emit('modeSwitcher')
     },
     goFrontPage () {
@@ -96,6 +95,10 @@ export default {
 </script>
 
 <style scoped>
+.actived{
+  border-bottom: 3px solid #128c9f;
+}
+
 .logo{
   cursor: pointer;
 }
@@ -218,7 +221,7 @@ nav{
   color:white;
 }
 .height-ext{
-  padding-bottom: 40px; /*height dependent on the gap you want to fill*/
+  padding-bottom: 33px;
 }
 @media screen and (max-width:970px) {
   .cancel-btn,
