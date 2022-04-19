@@ -28,16 +28,16 @@ export default {
     // this.$router.beforeEach((to, from, next) => {
     //   console.log(to.fullPath)
     //   if (to.fullPath === '/') {
-    //     next(this.$router.go(0))
+    //     this.$router.go(0)
     //   } else {
     //     next()
     //   }
     // })
 
-    // this.$router.beforeEach((to, from) => {
-    //   console.log(to.fullPath)
-    // }
-    // )
+    this.$router.beforeEach((to, from) => {
+      console.log(to.fullPath)
+    }
+    )
   },
   mounted () {
     if (device.mobile() === true) {

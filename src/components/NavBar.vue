@@ -221,7 +221,7 @@ nav{
   color:white;
 }
 .height-ext{
-  padding-bottom: 33px;
+  padding-bottom: 34px;
 }
 @media screen and (max-width:970px) {
   .cancel-btn,
