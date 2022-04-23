@@ -10,18 +10,12 @@
     <div class="category">
         <h3>Products</h3>
         <div class="category-item">
-          <router-link class="link" active-class="actived" to="/products?category=All">All</router-link>
-          <router-link class="link" active-class="actived" to="/products?category=SSD">SSD</router-link>
-          <router-link class="link" active-class="actived" to="/products?category=Memory">Memory Card</router-link>
-          <router-link class="link" active-class="actived" to="/products?category=Memory">Memory</router-link>
-          <router-link class="link" active-class="actived" to="/products?category=USB Flash Disk">Flash Disk</router-link>
-          <router-link class="link" active-class="actived" to="/products?category=Card Reader">Card Reader</router-link>
-            <!-- <h5 @click.prevent="getQuery('All')">All</h5>
-            <h5 @click.prevent="getQuery('SSD')">SDD</h5>
-            <h5 @click.prevent="getQuery('Memory Card')">Memory Card</h5>
-            <h5 @click.prevent="getQuery('Memory')">Memory</h5>
-            <h5 @click.prevent="getQuery('USB Flash Disk')">Flash Disk</h5>
-            <h5 @click.prevent="getQuery('Card Reader')">Card Reader</h5> -->
+          <router-link :class="All" to="/products?category=All">All</router-link>
+          <router-link :class="Solid" to="/products?category=SSD">SSD</router-link>
+          <router-link :class="MCard" to="/products?category=Memory Card">Memory Card</router-link>
+          <router-link :class="Memory" to="/products?category=Memory">Memory</router-link>
+          <router-link :class="Flash" to="/products?category=USB Flash Disk">Flash Disk</router-link>
+          <router-link :class="CRead" to="/products?category=Card Reader">Card Reader</router-link>
         </div>
     </div>
 </div>
@@ -32,10 +26,63 @@ import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
-      productList: ''
+      productList: '',
+      target: ''
     }
   },
   mounted () {
+  },
+  created () {
+    this.$watch(
+      () => this.$route.params,
+      (toParams, previousParams) => {
+        this.target = this.$route.query.category
+      }
+    )
+  },
+  computed: {
+    All: function () {
+      if (this.target === 'All') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    },
+    Solid: function () {
+      if (this.target === 'SSD') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    },
+    MCard: function () {
+      if (this.target === 'Memory Card') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    },
+    Memory: function () {
+      if (this.target === 'Memory') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    },
+    Flash: function () {
+      if (this.target === 'USB Flash Disk') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    },
+    CRead: function () {
+      if (this.target === 'Card Reader') {
+        return { link: true, actived: true }
+      } else {
+        return { link: true, actived: false }
+      }
+    }
   },
   methods: { // To ProductCard
     // getQuery (category) {

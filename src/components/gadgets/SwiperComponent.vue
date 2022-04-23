@@ -16,13 +16,10 @@
     <swiper-slide>
         <img  class="img-fluid-nb" src="@/assets/swiper/SDV90_Desktop_2048x.webp" alt="">
     </swiper-slide>
-    ...
   </swiper>
 </div>
 </template>
 <script>
-// import { Swiper, SwiperSlide } from 'swiper/vue/swiper-vue'
-// import 'swiper/swiper.scss'
 
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'

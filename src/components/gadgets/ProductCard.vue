@@ -12,7 +12,7 @@
           <router-link :to="`/products/${item.id}`">
               <button class="learn-more">Learn More</button>
           </router-link>
-          <button class="add2cart" @click="add2CartSingle(item.id)">Add To Cart</button>
+          <button class="add2cart" @click="add2CartSingle(item.id)">Add Cart</button>
         </div>
       </div>
     </div>
@@ -121,6 +121,10 @@ export default {
 </script>
 
 <style scope>
+a{
+  text-decoration: none;
+}
+
 p,
 h3{
   font-family: 'Noto Sans';

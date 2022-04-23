@@ -14,7 +14,6 @@
 import SwiperComponent from '@/components/gadgets/SwiperComponent.vue'
 import ProductCard from '@/components/gadgets/ProductCard.vue'
 import SideBar from '@/components/gadgets/SideBar.vue'
-import FooterBar from '@/components/FooterBar.vue'
 export default {
   data () {
     return {
@@ -22,7 +21,7 @@ export default {
       productList: ''
     }
   },
-  components: { SwiperComponent, ProductCard, SideBar, FooterBar },
+  components: { SwiperComponent, ProductCard, SideBar },
   methods: {
   },
   mounted () {

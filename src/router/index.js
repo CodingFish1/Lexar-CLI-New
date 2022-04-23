@@ -16,13 +16,33 @@ const routes = [
     name: 'products',
     component: () => import('../views/ProductList.vue'),
     children: [
-
     ]
   },
   {
     path: '/products/:id',
     name: 'productdetail',
     component: () => import('../views/_ProductDetail.vue')
+  },
+  {
+    path: '/support',
+    name: 'support',
+    component: () => import('../views/SupportPage.vue'),
+    children: [
+      // {
+      //   path: '',
+      //   component: 'warrantytable'
+      // },
+      {
+        path: 'warranty',
+        name: 'warrantytable',
+        component: () => import('../components/gadgets/WarrantyTable.vue')
+      },
+      {
+        path: 'disclaimer',
+        name: 'disclaimer',
+        component: () => import('../components/gadgets/DisclaimerContent.vue')
+      }
+    ]
   }
 ]
 

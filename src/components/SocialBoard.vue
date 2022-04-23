@@ -26,10 +26,9 @@
 </template>
 
 <script>
-import FooterBar from '@/components/FooterBar.vue'
 import emitter from '@/libs/emitter'
 export default {
-  components: { FooterBar },
+  components: {},
   data () {
     return {
       arr: [

@@ -1,6 +1,6 @@
 <template>
 <NavBar :is-dark="isDark"></NavBar>
-<SwiperComponent></SwiperComponent>
+<FillerComponent></FillerComponent>
 <div class="product-layout container">
   <div class="sticky-parent">
     <SideBar></SideBar>
@@ -11,29 +11,21 @@
 </template>
 
 <script>
-import SwiperComponent from '@/components/gadgets/SwiperComponent.vue'
+import FillerComponent from '@/components/gadgets/FillerComponent.vue'
 import SideBar from '@/components/gadgets/SideBar.vue'
 import ProductCart from '@/components/gadgets/ProductCart.vue'
-import FooterBar from '@/components/FooterBar.vue'
 import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
-      isDark: false,
-      filler: ''
+      isDark: false
     }
   },
-  components: { FooterBar, ProductCart, SwiperComponent, SideBar },
+  components: { ProductCart, FillerComponent, SideBar },
   created () {
     // console.log(this.$route.params.id)
   },
   mounted () {
-    const resizeObserver = new ResizeObserver((entries) => {
-      entries.forEach((entry) => {
-        this.filler = entry.contentRect.height + 'px'
-      })
-    })
-    resizeObserver.observe(document.querySelector('#nBar'))
   },
   methods: {
     add2CartSingle (idIn) {
@@ -57,7 +49,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 
 .product-layout{
   padding-top: v-bind(filler);

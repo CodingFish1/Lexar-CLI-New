@@ -16,8 +16,12 @@
                 <a href="" @click.prevent="modeSwitcher('Card Reader')">Card Reader</a>
               </div> -->
             </li>
-            <li><a href="#" class="lightword" :class={darkword:!isDark}>News</a></li>
-            <li><a href="#" class="lightword" :class={darkword:!isDark}>Support</a></li>
+            <li>
+              <a href="#" class="lightword" :class={darkword:!isDark}>News</a>
+            </li>
+            <li>
+              <router-link to="/support" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Support</router-link>
+            </li>
             <li>
                 <router-link to="/about" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Lexar</router-link>
             </li>

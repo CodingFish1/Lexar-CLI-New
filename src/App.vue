@@ -34,10 +34,10 @@ export default {
     //   }
     // })
 
-    this.$router.beforeEach((to, from) => {
-      console.log(to.fullPath)
-    }
-    )
+    // this.$router.beforeEach((to, from) => {
+    //   console.log(to.fullPath)
+    // }
+    // )
   },
   mounted () {
     if (device.mobile() === true) {

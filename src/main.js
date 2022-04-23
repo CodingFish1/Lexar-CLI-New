@@ -6,6 +6,7 @@ import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 import NavBar from './components/NavBar.vue'
+import FooterBar from './components/FooterBar.vue'
 import 'fullpage.js/dist/fullpage.css'
 import emitter from '@/libs/emitter'
 
@@ -16,6 +17,7 @@ const app = createApp(App)
 app.use(router)
 app.use(VueAxios, axios)
 app.component('NavBar', NavBar)// 前面對應標簽名
+app.component('FooterBar', FooterBar)// 前面對應標簽名
 app.mount('#app')
 
 new fullpage('#fullpage', { // eslint-disable-line
