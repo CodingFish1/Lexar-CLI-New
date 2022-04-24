@@ -4,7 +4,7 @@
     <!-- <img src="@/assets/image/support/duration_bg.jpg"> -->
     <div class="warranty-content">
       <h3>Duration of Warranty</h3>
-      <p>ALL KLEVV products are covered by the following Duration of Warranty subject to the above terms and conditions. You may apply the RMA within the applicable warranty period. The SSD is based on the TBW or Warranty period.</p>
+      <p>ALL Lexar products are covered by the following Duration of Warranty subject to the above terms and conditions. You may apply the RMA within the applicable warranty period. The SSD is based on the TBW or Warranty period.</p>
     </div>
     <div class="table-padding">
         <table class="table-style">

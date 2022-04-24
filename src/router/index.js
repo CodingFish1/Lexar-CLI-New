@@ -30,7 +30,7 @@ const routes = [
     children: [
       // {
       //   path: '',
-      //   component: 'warrantytable'
+      //   component: () => import('../components/gadgets/WarrantyTable.vue')
       // },
       {
         path: 'warranty',

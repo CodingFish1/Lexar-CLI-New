@@ -1,5 +1,6 @@
 <template>
-<section class="container grid-layout fp-auto-height">
+<section class="grid-layout fp-auto-height">
+    <div class="container">
          <div>
             <div>
                 <h3 class="stay">Stay Connected</h3>
@@ -20,6 +21,7 @@
                 </a>
             </div>
         </div>
+    </div>
     <FooterBar></FooterBar>
     </section>
 

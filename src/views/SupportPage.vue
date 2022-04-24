@@ -87,16 +87,17 @@ has exceeded its duration of warranty, or the product defect is caused by any of
 <div class="add-limitation">
   <p style="display:block">Additional limitation of warranty</p>
   <ul class="">
-    <ol>Any Warranty set forth herein shall NOT be applicable to any Essencore product when it is incorporated in, installed to, or used for continuously/consecutive recording devices such as a black box or CCTV."</ol>
-    <ol>Any Warranty set forth herein shall NOT be applicable to any Essencore product where breach of such Warranty could threaten injury or life, such as aviation, automotive, nuclear, medical or life support systems (or any other form of ultra-hazardous applications).</ol>
-    <ol>A customer or user of Essencore product shall be responsible for saving its own data for security of such data. In any case, Essencore shall NOT be responsible for loss of or damage to data recorded in Essencore product.</ol>
+    <ol>Any Warranty set forth herein shall NOT be applicable to any Longsys product when it is incorporated in, installed to, or used for continuously/consecutive recording devices such as a black box or CCTV."</ol>
+    <ol>Any Warranty set forth herein shall NOT be applicable to any Longsys product where breach of such Warranty could threaten injury or life, such as aviation, automotive, nuclear, medical or life support systems (or any other form of ultra-hazardous applications).</ol>
+    <ol>A customer or user of Longsys product shall be responsible for saving its own data for security of such data. In any case, Longsys shall NOT be responsible for loss of or damage to data recorded in Longsys product.</ol>
   </ul>
 </div>
 <div class="btn-group">
-  <router-link class="btn" to="/support/warranty" active-class="actived" >Warranty Duration</router-link>
-  <router-link class="btn" to="/support/disclaimer" active-class="actived" >Disclaimer</router-link>
+  <router-link :class="{btn:true,'default-style':blueColour}" to="/support/warranty" active-class="actived" @click="changeStyle(true)">Warranty Duration</router-link>
+  <router-link class="btn" to="/support/disclaimer" active-class="actived" @click="changeStyle(false)">Disclaimer</router-link>
 </div>
 <router-view></router-view>
+<FooterBar></FooterBar>
 </template>
 
 <script>
@@ -104,11 +105,15 @@ has exceeded its duration of warranty, or the product defect is caused by any of
 export default {
   data () {
     return {
-      isDark: false
+      isDark: false,
+      blueColour: true
     }
   },
   // components: { FillerComponent },
   methods: {
+    changeStyle (ToF) {
+      this.blueColour = ToF
+    }
   },
   mounted () {
   }
@@ -280,6 +285,11 @@ li::marker {
 }
 
 .actived{
+  background-color:#128c9f;
+  color:white;
+}
+
+.default-style{
   background-color:#128c9f;
   color:white;
 }
