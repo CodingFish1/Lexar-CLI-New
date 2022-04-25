@@ -77,6 +77,7 @@ export default {
       this.$router.go('/')
     },
     getCurrRouter () {
+      console.log(this.$route.name)
       return this.$route.name
     }
   },

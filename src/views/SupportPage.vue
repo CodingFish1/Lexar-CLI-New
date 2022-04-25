@@ -1,5 +1,5 @@
 <template>
-<NavBar></NavBar>
+<NavBar :is-dark="isDark"></NavBar>
 <!-- <FillerComponent></FillerComponent> -->
 <div class="bg-container">
   <img class="support-bg" src="../assets/image/support/tech_head-banner.jpg">
@@ -93,26 +93,30 @@ has exceeded its duration of warranty, or the product defect is caused by any of
   </ul>
 </div>
 <div class="btn-group">
-  <router-link :class="{btn:true,'default-style':blueColour}" to="/support/warranty" active-class="actived" @click="changeStyle(true)">Warranty Duration</router-link>
-  <router-link class="btn" to="/support/disclaimer" active-class="actived" @click="changeStyle(false)">Disclaimer</router-link>
+  <a :class="{btn:true,selected:defaultComp}" class="btn" @click="switchComp(true)">Warranty Duration</a>
+  <a :class="{btn:true,selected:!defaultComp}" @click="switchComp(false)">Disclaimer</a>
 </div>
-<router-view></router-view>
+<!-- <router-view></router-view> -->
+<WarrantyTable v-if="defaultComp"></WarrantyTable>
+<DisclaimerContent v-else></DisclaimerContent>
 <FooterBar></FooterBar>
 </template>
 
 <script>
+import WarrantyTable from '../components/gadgets/WarrantyTable.vue'
+import DisclaimerContent from '../components/gadgets/DisclaimerContent.vue'
 // import FillerComponent from '@/components/gadgets/FillerComponent.vue'
 export default {
   data () {
     return {
       isDark: false,
-      blueColour: true
+      defaultComp: true
     }
   },
-  // components: { FillerComponent },
+  components: { WarrantyTable, DisclaimerContent },
   methods: {
-    changeStyle (ToF) {
-      this.blueColour = ToF
+    switchComp (ToF) {
+      this.defaultComp = ToF
     }
   },
   mounted () {
@@ -284,12 +288,12 @@ li::marker {
   width: 160px;
 }
 
-.actived{
+/* .actived{
   background-color:#128c9f;
   color:white;
-}
+} */
 
-.default-style{
+.selected{
   background-color:#128c9f;
   color:white;
 }

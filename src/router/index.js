@@ -26,23 +26,24 @@ const routes = [
   {
     path: '/support',
     name: 'support',
-    component: () => import('../views/SupportPage.vue'),
-    children: [
-      // {
-      //   path: '',
-      //   component: () => import('../components/gadgets/WarrantyTable.vue')
-      // },
-      {
-        path: 'warranty',
-        name: 'warrantytable',
-        component: () => import('../components/gadgets/WarrantyTable.vue')
-      },
-      {
-        path: 'disclaimer',
-        name: 'disclaimer',
-        component: () => import('../components/gadgets/DisclaimerContent.vue')
-      }
-    ]
+    component: () => import('../views/SupportPage.vue')
+    // redirect: '/support/warranty',
+    // children: [
+    //   {
+    //     path: '',
+    //     component: () => import('../components/gadgets/WarrantyTable.vue')
+    //   },
+    //   {
+    //     path: 'warranty',
+    //     name: 'warrantytable',
+    //     component: () => import('../components/gadgets/WarrantyTable.vue')
+    //   },
+    //   {
+    //     path: 'disclaimer',
+    //     name: 'disclaimer',
+    //     component: () => import('../components/gadgets/DisclaimerContent.vue')
+    //   }
+    // ]
   }
 ]
 
