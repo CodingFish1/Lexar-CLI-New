@@ -13,13 +13,29 @@ import emitter from '@/libs/emitter'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
+import AllRules from '@vee-validate/rules'
+import { localize, setLocale } from '@vee-validate/i18n'
+import en from '@vee-validate/i18n/dist/locale/en.json'
+Object.keys(AllRules).forEach((rule) => { defineRule(rule, AllRules[rule]) })
+configure({
+  generateMessage: localize({ en: en }), // 載入En
+  validateOnInput: false// 當輸入任何內容直接進行驗證
+})
+// 設定預設語系
+setLocale('en')
+
 const app = createApp(App)
 app.use(router)
 app.use(VueAxios, axios)
 app.component('NavBar', NavBar)// 前面對應標簽名
 app.component('FooterBar', FooterBar)// 前面對應標簽名
+// Vue Validation
+app.component('vForm', Form)
+app.component('vField', Field)
+app.component('ErrorMessage', ErrorMessage)
 app.mount('#app')
-
+// Validation
 new fullpage('#fullpage', { // eslint-disable-line
   // options here
   autoScrolling: true,

@@ -99,12 +99,18 @@ has exceeded its duration of warranty, or the product defect is caused by any of
 <!-- <router-view></router-view> -->
 <WarrantyTable v-if="defaultComp"></WarrantyTable>
 <DisclaimerContent v-else></DisclaimerContent>
+<div class='contact-form'>
+  <p class="warranty-title">Contact Us</p>
+  <p class="contact-content">If you have any questions, please contact us. We will be in touch with you shortly</p>
+  <ContactForm></ContactForm>
+</div>
 <FooterBar></FooterBar>
 </template>
 
 <script>
 import WarrantyTable from '../components/gadgets/WarrantyTable.vue'
 import DisclaimerContent from '../components/gadgets/DisclaimerContent.vue'
+import ContactForm from '../components/gadgets/ContactForm.vue'
 // import FillerComponent from '@/components/gadgets/FillerComponent.vue'
 export default {
   data () {
@@ -113,7 +119,7 @@ export default {
       defaultComp: true
     }
   },
-  components: { WarrantyTable, DisclaimerContent },
+  components: { WarrantyTable, DisclaimerContent, ContactForm },
   methods: {
     switchComp (ToF) {
       this.defaultComp = ToF
@@ -288,14 +294,20 @@ li::marker {
   width: 160px;
 }
 
-/* .actived{
-  background-color:#128c9f;
-  color:white;
-} */
-
 .selected{
   background-color:#128c9f;
   color:white;
+}
+
+/**********/
+.contact-content{
+  text-align: center;
+  font-size: 16px;
+  color:#343434;
+  font-family: 'Noto Sans';
+  line-height:27px;
+  padding-right:40px;
+  padding:0px 200px 20px 200px;
 }
 
 @media screen and (max-width:1045px) {
