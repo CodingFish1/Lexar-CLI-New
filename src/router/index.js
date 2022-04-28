@@ -44,6 +44,11 @@ const routes = [
     //     component: () => import('../components/gadgets/DisclaimerContent.vue')
     //   }
     // ]
+  },
+  {
+    path: '/cart',
+    name: 'cart',
+    component: () => import('../views/CartView.vue')
   }
 ]
 

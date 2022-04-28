@@ -23,7 +23,7 @@
         <error-message name="message" class="invalid-feedback"></error-message>
       </div>
       <div class="text-end">
-        <button type="submit" class="btn btn-primary"
+        <button type="submit" class="btn btn-primary btn-content"
         :disabled="Object.keys(errors).length>0 || cart.length===0">Submit</button>
       </div>
     </v-form>
@@ -66,3 +66,12 @@ export default {
   // },
 }
 </script>
+
+<style scoped>
+.btn-content{
+  font-size: 16px;
+  color:white;
+  font-family: 'Noto Sans';
+}
+
+</style>>
