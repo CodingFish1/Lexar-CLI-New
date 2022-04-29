@@ -10,7 +10,7 @@
     <div class="category">
         <h3>Products</h3>
         <div class="category-item">
-          <router-link :class="All" to="/products?category=All">All</router-link>
+          <router-link :class="All" to="/products?page=1">All</router-link>
           <router-link :class="Solid" to="/products?category=SSD">SSD</router-link>
           <router-link :class="MCard" to="/products?category=Memory Card">Memory Card</router-link>
           <router-link :class="Memory" to="/products?category=Memory">Memory</router-link>
@@ -36,13 +36,20 @@ export default {
     this.$watch(
       () => this.$route.params,
       (toParams, previousParams) => {
-        this.target = this.$route.query.category
+        if (this.$route.query.category !== undefined) {
+          this.target = this.$route.query.category
+        }
+
+        if (this.$route.query.page === '1') {
+          this.target = 1
+          console.log(this.target)
+        }
       }
     )
   },
   computed: {
     All: function () {
-      if (this.target === 'All') {
+      if (this.target === 1) {
         return { link: true, actived: true }
       } else {
         return { link: true, actived: false }
@@ -106,7 +113,7 @@ a,h3,h5{
 .search{
     display: flex;
     flex-direction: column;
-    max-width:240px;
+    max-width:189.33px;
 }
 .search h3{
     text-align: center;
@@ -121,6 +128,8 @@ a,h3,h5{
 
 .category-item a{
   text-decoration: none;
+  font-family: 'Noto Sans';
+  padding-left:5px;
   font-size:20px;
   display: block;
   color:black;

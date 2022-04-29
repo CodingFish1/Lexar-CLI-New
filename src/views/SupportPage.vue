@@ -93,7 +93,7 @@ has exceeded its duration of warranty, or the product defect is caused by any of
   </ul>
 </div>
 <div class="btn-group">
-  <a :class="{btn:true,selected:defaultComp}" class="btn" @click="switchComp(true)">Warranty Duration</a>
+  <a :class="{btn:true,selected:defaultComp}" @click="switchComp(true)">Warranty Duration</a>
   <a :class="{btn:true,selected:!defaultComp}" @click="switchComp(false)">Disclaimer</a>
 </div>
 <!-- <router-view></router-view> -->

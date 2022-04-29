@@ -28,13 +28,15 @@ export default {
     return {
       productList: '',
       searchResult: '',
-      displayList: ''
+      displayList: '',
+
+      pagination_data: {}
     }
   },
   created () {
-    // emitter.on('category', (data) => {
-    //   this.getProducts(data)
-    // })
+    emitter.on('changePage', (data) => {
+      this.getProducts(data)
+    })
     emitter.on('searching', (data) => {
       this.searchProduct(data)
     })
@@ -44,11 +46,15 @@ export default {
         if (this.$route.query.category !== undefined) {
           this.getProducts(this.$route.query.category)
         }
+
+        if (this.$route.query.page === '1') {
+          this.getProducts(parseInt(this.$route.query.page))
+        }
       }
     )
   },
   mounted () {
-    this.getProducts('All')
+    this.getProducts(1)
   },
   beforeUnmount () {
     // emitter.off('category')
@@ -58,22 +64,40 @@ export default {
     getProducts (category) {
       let url = ''
       if (category === 'All') {
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=1`
+        // url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
         // this.$router.push({ path: '/products', query: { category: category } })
       }
 
-      if (category !== 'All') {
+      if (category !== 'All' && typeof (category) !== 'number') {
         url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?category=${category}`
         this.$router.push({ path: '/products', query: { category: category } })
+      }
+
+      if (typeof (category) === 'number') {
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=${category}`
       }
 
       this.$http.get(url)
         .then((res) => {
           this.productList = res.data.products
           this.displayList = res.data.products
+          if (typeof (category) === 'number') {
+            this.pagination_data = res.data.pagination
+            emitter.emit('pagination', res.data.pagination)
+          }
         })
         .catch((error) => { console.dir(error) })
     },
+    // getProductByPg (page = 1) {
+    //   axios.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`)
+    //     .then((res) => {
+    //       console.log("Hi")
+    //       this.products = res.data.products
+    //       this.pagination_bg=res.data.pagination
+    //                 console.log("Hi")
+    //             })
+    //             .catch((error)=>{console.dir(error);})},
     add2CartSingle (idIn) {
       console.log(idIn)
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)

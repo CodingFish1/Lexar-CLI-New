@@ -7,7 +7,7 @@
         <ul class="nav-item dd-parent">
             <label for="cancel-btn" class="btn cancel-btn"><i class="bi bi-x-square"></i></label>
             <li class="dd-toggle">
-                <router-link to="/products?category=All" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</router-link>
+                <router-link to="/products?page=1" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Products</router-link>
               <!-- <div id="dd-menu">
                 <a href="" @click.prevent="modeSwitcher('SSD')">SSD</a>
                 <a href="" @click.prevent="modeSwitcher('Memory Card')">Memory Card</a>
@@ -16,9 +16,9 @@
                 <a href="" @click.prevent="modeSwitcher('Card Reader')">Card Reader</a>
               </div> -->
             </li>
-            <li>
+            <!-- <li>
               <a href="#" class="lightword" :class={darkword:!isDark}>News</a>
-            </li>
+            </li> -->
             <li>
               <router-link to="/support" active-class="actived" class="lightword height-ext" @click="modeSwitcher" :class={darkword:!isDark}>Support</router-link>
             </li>

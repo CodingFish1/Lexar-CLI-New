@@ -5,23 +5,28 @@
   <div class="sticky-parent">
     <SideBar></SideBar>
   </div>
-  <ProductCard></ProductCard>
+  <div style="display:flex;flex-direction:column;align-items:center">
+    <ProductCard></ProductCard>
+    <Pagination style="padding-top:5px"></Pagination>
+  </div>
 </div>
 <FooterBar></FooterBar>
 </template>
 
 <script>
 import SwiperComponent from '@/components/gadgets/SwiperComponent.vue'
+import Pagination from '@/components/gadgets/PaginationComponent.vue'
 import ProductCard from '@/components/gadgets/ProductCard.vue'
 import SideBar from '@/components/gadgets/SideBar.vue'
 export default {
   data () {
     return {
       isDark: false,
-      productList: ''
+      productList: '',
+      pagination_bg: {}
     }
   },
-  components: { SwiperComponent, ProductCard, SideBar },
+  components: { SwiperComponent, ProductCard, SideBar, Pagination },
   methods: {
   },
   mounted () {

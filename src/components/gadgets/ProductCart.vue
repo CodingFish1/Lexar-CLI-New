@@ -3,7 +3,7 @@
     <p class="title">{{product.title}}</p>
     <div class="main-area">
         <!-- <img class="img-size" :src="product.imageUrl" alt=""> -->
-        <div class="swiper-container">
+        <div class="img-size swiper-container">
           <swiper
             :modules='modules'
             :slides-per-view="1"
@@ -24,17 +24,19 @@
                   <button type="button" class="btn btn-primary" @click="add2Cart" :disabled="isDisable">{{warning}}</button>
                 </div>
               </div>
-            <p>Key Features</p>
+            <p style="padding-top:20px">Key Features</p>
             <p v-for="(item,index) in strArr" :key="index">{{item}}</p>
         </div>
     </div>
     <div>
-      <p>{{product.content}}</p>
+      <p style="padding-top:20px">{{product.content}}</p>
     </div>
+    <!-- <InnerTab></InnerTab> -->
 </div>
 </template>
 
 <script>
+// import InnerTab from '@/components/gadgets/InnerTab/InnerTab.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
@@ -91,6 +93,11 @@ export default {
 </script>
 
 <style scoped>
+p{
+  font-family: 'Noto Sans';
+  font-size: 16px;
+}
+
 .overall-layout{
     display: flex;
     flex-direction: column;
@@ -109,11 +116,31 @@ export default {
     align-items: center;
 }
 
+.swiper-container{
+  align-items: center;
+}
+
 .img-size{
-    max-width:300px;
+    max-width:350px;
 }
 
 .price{
-  padding-left:20px;
+  padding-top:20px;
+  margin-left:60px;
+}
+
+@media screen and (max-width:1000px) {
+.main-area{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.img-size{
+    max-width:250px;
+}
+
+/******************/
+
 }
 </style>
