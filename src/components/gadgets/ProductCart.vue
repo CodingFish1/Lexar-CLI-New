@@ -21,7 +21,7 @@
                 <div class="input-group">
                   <input type="number" class="form-control" min="1" v-model.number="itemCounter"
                   ref="blocker" @change="filter">
-                  <button type="button" class="btn btn-primary" @click="add2Cart" :disabled="isDisable">{{warning}}</button>
+                  <button type="button" class="btn btn-primary" style="color:white" @click="add2Cart" :disabled="isDisable">{{warning}}</button>
                 </div>
               </div>
             <p style="padding-top:20px">Key Features</p>
@@ -29,23 +29,23 @@
         </div>
     </div>
     <div>
-      <p style="padding-top:20px">{{product.content}}</p>
+      <InnerTab style="padding-top:20px"></InnerTab>
     </div>
-    <!-- <InnerTab></InnerTab> -->
 </div>
 </template>
 
 <script>
-// import InnerTab from '@/components/gadgets/InnerTab/InnerTab.vue'
+import InnerTab from '@/components/gadgets/InnerTab/InnerTab.vue'
 import { Swiper, SwiperSlide } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/autoplay'
 import { Navigation, Pagination, Autoplay } from 'swiper'
+import emitter from '@/libs/emitter'
 
 export default {
-  components: { Swiper, SwiperSlide },
+  components: { Swiper, SwiperSlide, InnerTab },
   data () {
     return {
       modules: [Navigation, Pagination, Autoplay],
@@ -72,6 +72,7 @@ export default {
         .then((res) => {
           this.product = res.data.product
           this.contentProcessor(this.product.description)
+          emitter.emit('description', this.product.content)
         })
         .catch((error) => { console.dir(error) })
     },
