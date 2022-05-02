@@ -1,5 +1,5 @@
 <template>
-    <footer class="footer-section container" >
+    <footer class="footer-section" >
         <img src="../assets/image/support/small_icon/logo.png">
         <p>Longsys Limited 2022. All rights reserved. Lexar and its logo are registered trademarks of Longsys Limited.
           Other products, brand names, company names and logos are trademarks of their respective owners.</p>
@@ -28,7 +28,7 @@ export default {
   flex-direction:column;
   align-items: flex-start;
   background-color: #3f4041;
-  max-width: 1300px
+  width:100%;
 }
 
 .footer-section img{

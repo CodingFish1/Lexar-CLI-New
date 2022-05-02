@@ -116,11 +116,11 @@ export default {
   background-color:#128c9f;
 }
 
-.locator-mobile{
+/* .locator-mobile{
   position: relative;
   padding-bottom: 5px;
   height:38vh;
-}
+} */
 
 @media screen and (max-width:970px) {
 .image-wall{
@@ -130,7 +130,19 @@ export default {
   height: auto !important;
 }
 
-.locator{
+.img-fluid-nb{
+  object-fit:cover;
+  max-width:100%;
+  height:100%;
+  padding-bottom: 5px;
+}
+
+/* .locator{
+  position: relative;
+  padding-bottom: 5px;
+} */
+
+.locator-mobile{
   position: relative;
   padding-bottom: 5px;
 }
@@ -150,7 +162,7 @@ export default {
 .pic-content-2{
   display: flex;
   flex-direction: column;
-  top:25%;
+  top:75%;
   left: 5%;
   position: absolute;
 }

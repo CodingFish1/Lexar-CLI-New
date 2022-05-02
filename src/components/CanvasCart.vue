@@ -35,7 +35,6 @@ export default {
     }
   },
   created () {
-
   },
   mounted () {
     this.canvasOn = new Offcanvas(this.$refs.canvas)

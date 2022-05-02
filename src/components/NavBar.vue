@@ -85,6 +85,10 @@ export default {
     emitter.on('cartToggle', () => {
       this.getCart()
     })
+    emitter.on('loadCart', (data) => {
+      this.getCart()
+      console.log('getcart in canvas')
+    })
     if (this.getCurrRouter() !== undefined) {
       this.barBgColor = '#3f4041'
       this.wordColor = '#FFFFFF'
@@ -264,7 +268,7 @@ nav{
   text-decoration: none;
 }
   .bi-cart3{
-  margin-left:30px;
+  margin-left:10px;
 }
   #menu-btn:checked ~ .nav-item{
     left:0%;
@@ -279,7 +283,7 @@ nav{
     margin: 15px 10px;
   }
   .nav-item li a{
-    padding:0px 20px;
+    padding:5px 0px;
     font-size: 20px;
   }
   .nav-item .mobile-item{

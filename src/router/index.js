@@ -50,6 +50,12 @@ const routes = [
     name: 'cart',
     component: () => import('../views/CartView.vue')
   }
+  // {
+  //   path: '/carts',
+  //   name: 'carts',
+  //   component: () => import('../views/CartView.vue'),
+  //   redirect: '/cart'
+  // }
 ]
 
 const router = createRouter({
