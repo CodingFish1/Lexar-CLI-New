@@ -51,7 +51,7 @@ export default {
 .img-fluid-nb{
   object-fit:cover;
   max-width:50%;
-  height:60%
+  height:50%;
 }
 
 .filler{
