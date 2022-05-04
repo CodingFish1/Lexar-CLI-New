@@ -3,7 +3,7 @@
 <!-- <FillerComponent></FillerComponent> -->
 <div class="bg-container">
   <img class="support-bg" src="../components/gadgets/CartComponent/cart_head-banner.jpg">
-  <p class="bg-title">Finalize your payment</p>
+  <p class="bg-title">Finalize Your Payment</p>
 </div>
 <div class="container">
     <div class="column row">

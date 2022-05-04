@@ -28,8 +28,11 @@ export default {
   },
   created () {
     emitter.on('pagination', (data) => {
-      this.pagination = data
-      console.log(this.pagination)
+      if (data === false) {
+        this.isDiplay = false
+      } else {
+        this.pagination = data
+      }
     })
 
     this.$watch(

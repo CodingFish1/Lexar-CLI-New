@@ -99,7 +99,7 @@ has exceeded its duration of warranty, or the product defect is caused by any of
 <!-- <router-view></router-view> -->
 <WarrantyTable v-if="defaultComp"></WarrantyTable>
 <DisclaimerContent v-else></DisclaimerContent>
-<div class='contact-form'>
+<div class='contact-form container'>
   <p class="warranty-title">Contact Us</p>
   <p class="contact-content">If you have any questions, please contact us. We will be in touch with you shortly</p>
   <ContactForm></ContactForm>

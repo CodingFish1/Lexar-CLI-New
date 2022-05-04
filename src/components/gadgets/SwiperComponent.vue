@@ -50,8 +50,8 @@ export default {
 <style scope>
 .img-fluid-nb{
   object-fit:cover;
-  max-width:100%;
-  height:100%
+  max-width:50%;
+  height:50%
 }
 
 .filler{

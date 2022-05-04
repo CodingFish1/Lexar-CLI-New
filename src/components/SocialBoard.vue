@@ -1,6 +1,6 @@
 <template>
 <section class="grid-layout fp-auto-height">
-    <div class="container">
+    <div class="">
          <div>
             <div>
                 <h3 class="stay">Stay Connected</h3>
@@ -74,9 +74,9 @@ export default {
   line-height: 32px;
 }
 .stay-connect{
-  max-width:500px;
+  /* max-width:500px; */
   text-align: center;
-  padding-top: 10px;
+  padding-top: 0px 10px;
   font-family: 'Noto Sans';
   font-size: 19px;
   font-weight: 300;
@@ -92,10 +92,11 @@ export default {
 
 .grid-system{
   display:grid;
-  max-width:900px;
+  max-width:1300px;
   max-height:300px;
   grid-row-gap: 5px;
   grid-column-gap: 5px;
+  padding:0px 30px;
 
   grid-template-rows: 150px 150px;
   grid-template-columns: repeat(6 1fr);

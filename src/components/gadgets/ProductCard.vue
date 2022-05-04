@@ -1,8 +1,11 @@
 <template>
-<div v-if='displayList'>
+<LoadingIt :active="isLoading"></LoadingIt>
+<div>
   <div class="card-layout">
     <div class="card"  v-for="(item,index) in displayList" :key="index">
       <div class="card-head">
+      <!-- <div class="card-head" :style="{backgroundImage: `url(${item.imageUrl})`}"
+      style="height:250px;background-size:cover;background-position:center center"> -->
         <img :src="item.imageUrl" alt="">
       </div>
       <div class="card-body">
@@ -18,7 +21,6 @@
     </div>
   </div>
 </div>
-<p v-else>Nothing</p>
 </template>
 
 <script>
@@ -30,7 +32,9 @@ export default {
       searchResult: '',
       displayList: '',
 
-      pagination_data: {}
+      pagination_data: {},
+
+      isLoading: true
     }
   },
   created () {
@@ -38,7 +42,7 @@ export default {
       this.getProducts(data)
     })
     emitter.on('searching', (data) => {
-      this.searchProduct(data)
+      this.getProducts('All', data)
     })
     this.$watch(
       () => this.$route.params,
@@ -61,11 +65,11 @@ export default {
     emitter.off('searching')
   },
   methods: {
-    getProducts (category) {
+    getProducts (category, search) {
       let url = ''
       if (category === 'All') {
-        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=1`
-        // url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
+        // url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products?page=1`
+        url = `${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/products/all`
         // this.$router.push({ path: '/products', query: { category: category } })
       }
 
@@ -86,6 +90,10 @@ export default {
             this.pagination_data = res.data.pagination
             emitter.emit('pagination', res.data.pagination)
           }
+          if (search !== undefined) {
+            this.searchProduct(search)
+          }
+          this.isLoading = false
         })
         .catch((error) => { console.dir(error) })
     },
@@ -110,6 +118,14 @@ export default {
             .then((res) => {
               console.log(res)
               emitter.emit('cartToggle')
+              this.$swal
+                .fire({
+                  title: 'Item added!',
+                  icon: 'success',
+                  showCancelButton: false,
+                  confirmButtonColor: '#128c9f',
+                  confirmButtonText: 'Got it!'
+                })
             })
             .catch((error) => { console.dir(error) })
         }
@@ -117,7 +133,7 @@ export default {
     },
     searchProduct (input) {
       if (input === '') {
-        this.getProducts()
+        this.getProducts(1)
       }
       const strArr = input.split(' ')
       strArr.forEach(element => {
@@ -125,20 +141,7 @@ export default {
         (item.description.toUpperCase().includes(element.toUpperCase())))
         this.displayList = [...new Set(temp)]
       })
-    },
-    add2Cart () {
-      const data = {
-        product_id: this.product.id,
-        qty: this.itemCounter
-      }
-
-      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
-        .then((res) => {
-        // loadCart.emit('loadCart',this.selectedItem)
-          console.log(res)
-          this.modalOn.hide()
-        })
-        .catch((error) => { console.dir(error) })
+      emitter.emit('pagination', false)
     }
   }
 }
@@ -152,6 +155,7 @@ a{
 p,
 h3{
   font-family: 'Noto Sans';
+  font-size:16px;
 }
 .card-layout{
   position: relative;
@@ -164,7 +168,7 @@ img {
 }
 .card {
   margin:10px;
-  padding:5px;
+  /* padding:5px; */
   max-width: 275px;
   max-height: 600px;
   background: white;
@@ -192,6 +196,9 @@ img {
 }
 .botton-group{
   display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-left: 15px;
 }
 .card-body button {
   margin-inline: auto;
@@ -199,10 +206,12 @@ img {
 }
 .learn-more{
   background-color: white;
+  width:96.72px;
 }
 .add2cart{
   background-color: black;
   color:white;
+  width:96.72px;
 }
 @media screen and (max-width:670px) {
 .card-layout{

@@ -1,6 +1,6 @@
 <template>
 <div class="my-5 row justify-content-center">
-    <v-form ref="form" class="col-md-6" v-slot="{ errors }" @submit="submitIt">
+    <v-form ref="form" class="col-md-8" v-slot="{ errors }" @submit="submitIt">
       <div class="mb-3">
         <label for="email" class="form-label">E-Mail</label>
         <v-field id="email" name="email" type="email" class="form-control"

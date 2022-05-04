@@ -12,6 +12,14 @@ import emitter from '@/libs/emitter'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
+// Vue Loading
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+
+// Sweet Alert2
+import VueSweetalert2 from 'vue-sweetalert2'
+import 'sweetalert2/dist/sweetalert2.min.css'
+
 import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
 import AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
@@ -27,6 +35,7 @@ setLocale('en')
 const app = createApp(App)
 app.use(router)
 app.use(VueAxios, axios)
+app.use(VueSweetalert2)
 app.component('NavBar', NavBar)// 前面對應標簽名
 app.component('FooterBar', FooterBar)// 前面對應標簽名
 // Vue Validation
@@ -34,7 +43,9 @@ app.component('vForm', Form)
 app.component('vField', Field)
 app.component('ErrorMessage', ErrorMessage)
 app.mount('#app')
-// Validation
+
+app.component('LoadingIt', Loading)
+
 new fullpage('#fullpage', { // eslint-disable-line
   // options here
   autoScrolling: true,

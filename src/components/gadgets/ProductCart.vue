@@ -1,4 +1,5 @@
 <template>
+<LoadingIt :active="isLoading"></LoadingIt>
 <div class="overall-layout">
     <p class="title">{{product.title}}</p>
     <div class="main-area">
@@ -57,7 +58,9 @@ export default {
       warning: 'Add to Cart',
 
       strArr: '',
-      strArr2: []
+      strArr2: [],
+
+      isLoading: true
     }
   },
   created () {
@@ -73,6 +76,27 @@ export default {
           this.product = res.data.product
           this.contentProcessor(this.product.description)
           emitter.emit('description', this.product.content)
+          this.isLoading = false
+        })
+        .catch((error) => { console.dir(error) })
+    },
+    add2Cart () {
+      const data = {
+        product_id: this.product.id,
+        qty: this.itemCounter
+      }
+
+      this.$http.post(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`, { data })
+        .then((res) => {
+          this.$swal
+            .fire({
+              title: 'Cart Updated!',
+              icon: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#128c9f',
+              confirmButtonText: 'Got it!'
+            })
+          emitter.emit('cartToggle')
         })
         .catch((error) => { console.dir(error) })
     },

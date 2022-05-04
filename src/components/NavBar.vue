@@ -85,10 +85,6 @@ export default {
     emitter.on('cartToggle', () => {
       this.getCart()
     })
-    emitter.on('loadCart', (data) => {
-      this.getCart()
-      console.log('getcart in canvas')
-    })
     if (this.getCurrRouter() !== undefined) {
       this.barBgColor = '#3f4041'
       this.wordColor = '#FFFFFF'

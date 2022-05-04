@@ -2,7 +2,7 @@
 <div class="my-5 row justify-content-center">
     <v-form ref="form" class="col-md-8" v-slot="{ errors }" @submit="submitOrder">
       <div class="mb-3">
-        <label for="email" class="form-label">Email</label>
+        <label for="email" class="form-label">E-Mail</label>
         <v-field id="email" name="email" type="email" class="form-control"
                 :class="{ 'is-invalid': errors['email'] }" placeholder="" rules="email|required"
                 v-model="form.user.email"
@@ -12,26 +12,26 @@
 
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
-        <v-field id="name" name="name" type="text" class="form-control" :class="{ 'is-invalid': errors['姓名'] }"
+        <v-field id="name" name="name" type="text" class="form-control" :class="{ 'is-invalid': errors['name'] }"
                 placeholder="" rules="required"
                 v-model="form.user.name"></v-field>
-        <error-message name="Name" class="invalid-feedback"></error-message>
+        <error-message name="name" class="invalid-feedback"></error-message>
       </div>
 
       <div class="mb-3">
         <label for="tel" class="form-label">Telphone</label>
-        <v-field id="tel" name="telphone" type="text" class="form-control" :class="{ 'is-invalid': errors['電話'] }"
-                placeholder="" rules="required|min:8|max:10"
+        <v-field id="tel" name="telphone" type="tel" class="form-control" :class="{ 'is-invalid': errors['telphone'] }"
+                placeholder="" rules="|required|min:8|max:10"
                 v-model="form.user.tel"></v-field>
-        <error-message name="Telphone" class="invalid-feedback"></error-message>
+        <error-message name="telphone" class="invalid-feedback"></error-message>
       </div>
 
       <div class="mb-3">
         <label for="address" class="form-label">Address</label>
-        <v-field id="address" name="地址" type="text" class="form-control" :class="{ 'is-invalid': errors['地址'] }"
+        <v-field id="address" name="address" type="text" class="form-control" :class="{ 'is-invalid': errors['address'] }"
                 placeholder="" rules="required"
                 v-model="form.user.address"></v-field>
-        <error-message name="Address" class="invalid-feedback"></error-message>
+        <error-message name="address" class="invalid-feedback"></error-message>
       </div>
 
       <div class="mb-3">
@@ -41,7 +41,7 @@
       </div>
       <div class="text-end">
         <button type="submit" class="btn btn-primary btn-content mt-1"
-        :disabled="Object.keys(errors).length>0 || cart.length===0">Confirm your order</button>
+        :disabled="Object.keys(errors).length>0 || cart.length===0">Place your order</button>
       </div>
     </v-form>
   </div>
@@ -73,7 +73,16 @@ export default {
           console.log(res)
           this.$refs.form.resetForm()
           this.form.message = ''
-          emitter.emit('loadCart') // reload the cart after submit order in
+          this.$swal
+            .fire({
+              title: 'Order Created',
+              icon: 'success',
+              showCancelButton: false,
+              confirmButtonColor: '#128c9f',
+              confirmButtonText: 'Okay'
+            })
+          emitter.emit('loadCart') // reload the cart after submit order in CartItself.vue
+          emitter.emit('cartToggle')
         })
         .catch((error) => { console.dir(error) })
     }

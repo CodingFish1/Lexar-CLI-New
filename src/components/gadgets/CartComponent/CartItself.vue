@@ -43,7 +43,7 @@
     <tfoot>
       <tr>
         <td colspan="3" class="text-end">Total Price:</td>
-        <td class="text-end">{{cart.final_total}}</td>
+        <td class="text-end">${{totalPrice}}</td>
       </tr>
     </tfoot>
   </table>
@@ -58,12 +58,18 @@ import emitter from '@/libs/emitter.js'
 export default {
   data () {
     return {
-      cart: {},
+      cart: [],
       isLoading: '',
       isDeleting: ''
     }
   },
-
+  computed: {
+    totalPrice () {
+      let total = 0
+      this.cart.forEach(item => { total += item.final_total })
+      return total
+    }
+  },
   methods: {
     getCart () {
       this.$http.get(`${process.env.VUE_APP_API}/api/${process.env.VUE_APP_PATH}/cart`)
